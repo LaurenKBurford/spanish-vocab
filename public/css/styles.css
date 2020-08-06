@@ -1,0 +1,288 @@
+body {
+  background-color: #FCC27C;
+  width: 76vw;
+  position: absolute;
+  right: 0;
+}
+
+/* Homepage Styles */
+
+.begin-box {
+  box-sizing: border-box;
+  background-color: #EDD0AE;
+  border: 3px solid #ED863A;
+  width: 24rem;
+  margin: 6rem auto;
+  text-align: center;
+  padding: 3rem;
+}
+
+.begin-title {
+  color: #84041A;
+  font-family: 'Niramit', sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 60px;
+  padding: 0 1rem;
+  margin: 0 0 2rem 0;
+}
+
+.logged-footer {
+  box-sizing: border-box;
+  background-color: #8C092B;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 22vw;
+  height: auto;
+  padding: 1.5rem;
+}
+
+.logged-out-footer {
+  box-sizing: border-box;
+  background-color: #8C092B;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 22vw;
+  height: 50vh;
+  padding: 1.5rem;
+  padding-top: 19rem;
+}
+
+.footers {
+  display: block;
+  font-size: 21px;
+  line-height: 23px;
+  font-family: 'Niramit', sans-serif;
+  font-weight: 600;
+}
+
+.logged-status {
+  color: #EDD0AE;
+  margin-bottom: 15px;
+}
+
+.log-out:link {
+  color: #F9BA67;
+  text-decoration: none;
+}
+
+.log-out:hover {
+  color: #ED863A;
+}
+
+.logged-out-status {
+  color: #EDD0AE;
+  margin-bottom: 5px;
+}
+
+.log-in {
+  color: #F9BA67;
+  text-decoration: none;
+}
+
+.log-in:hover {
+  color: #ED863A;
+}
+
+#big-plus {
+  position: fixed;
+  left: 1.5rem;
+  top: 18rem;
+}
+
+#big-plus button {
+  width: 1rem;
+  height: 1rem;
+}
+
+#orange-add {
+  width: 110px !important;
+  height: 110px !important;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  opacity: 0;
+}
+
+#orange-add:hover {
+  cursor: pointer;
+}
+
+#get-started {
+  background-color: #FCC27C;
+  color: #8C092B;
+  font-weight: 600;
+  border: 3px solid #8C092B;
+  font-size: 25px;
+  font-family: 'Niramit', sans-serif;
+  padding: 10px;
+}
+
+#started {
+    position: relative;
+    bottom: 7px;
+}
+
+#get-started:hover {
+  cursor: pointer;
+}
+
+#get-started:focus {
+  outline: none;
+}
+
+/* Login/Register Styles */
+
+.sidebar {
+  box-sizing:border-box;
+  color: #EDD0AE;
+  background-color: #E07127;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 22vw;
+  padding: 1rem 1.5rem;
+}
+
+.title {
+  font-family: 'Amaranth', sans-serif;
+  font-size: 65px;
+  margin: 0;
+  line-height: 75px;
+}
+
+.login-box {
+  background-color: #EDD0AE;
+  border: 3px solid #ED863A;
+  width: 24rem;
+  margin: 6rem auto;
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+#register-form {
+  border-color: #84041A;
+}
+
+.login-title {
+  color: #EDD0AE;
+  background-color: #ED863A;
+  margin: 0;
+  text-align: center;
+  font-family: 'Niramit', sans-serif;
+  font-weight: 600;
+  font-size: 35px;
+  padding-bottom: 5px;
+}
+
+#register-title {
+  background-color: #84041A;
+}
+
+.login-form {
+  margin: 2rem 3rem;
+}
+
+.form-input {
+  box-sizing: border-box;
+  display: block;
+  margin-bottom: 2rem;
+  width: 100%;
+  height: 2.5rem;
+}
+
+#username-email,
+#password,
+#username,
+#email {
+  background-color: #EDD0AE;
+  border: 2px solid #84041A;
+  padding: 0 10px;
+  font-size: 21px;
+}
+
+#username-email:focus,
+#password:focus,
+#username:focus,
+#email:focus {
+  background-color: white;
+  outline: none;
+}
+
+#username-email::placeholder,
+#password::placeholder,
+#username::placeholder,
+#email::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #84041A;
+  opacity: .7; /* Firefox */
+}
+
+#username-email:-ms-input-placeholder,
+#password:-ms-input-placeholder,
+#username::placeholder,
+#email::placeholder { /* Internet Explorer 10-11 */
+  color: #84041A;
+  opacity: .7;
+}
+
+#username-email::-ms-input-placeholder,
+#password::-ms-input-placeholder,
+#username::placeholder,
+#email::placeholder { /* Microsoft Edge */
+  color: #84041A;
+  opacity: .7;
+}
+
+#login-button {
+  border-radius: 0;
+  border: none;
+  color: #EDD0AE;
+  background-color: #84041A;
+  font-size: 23px;
+}
+
+#register-button {
+  border-radius: 0;
+  border: none;
+  color: #EDD0AE;
+  background-color: #ED863A;
+  font-size: 23px;
+}
+
+#login-button:hover {
+  cursor: pointer;
+  background-color: #ED863A;
+}
+
+#register-button:hover {
+  cursor: pointer;
+  background-color: #84041A;
+}
+
+.options {
+  text-decoration: none;
+  display: block;
+  font-family: "Niramit", sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.forgot-password {
+  color: #ED863A;
+}
+
+.register {
+  color: #C66336;
+}
+
+.forgot-password:hover,
+.register:hover {
+  color: #84041A;
+}
+
+.already {
+  color: #84041A;
+}

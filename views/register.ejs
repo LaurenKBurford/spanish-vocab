@@ -1,0 +1,20 @@
+<%- include("header") -%>
+
+  <div class="login-box" id="register-form">
+    <h2 class="login-title" id="register-title">Register</h2>
+
+    <form class="login-form" action="/register" method="post">
+
+      <input class="form-input" id="username" type="text" name="username" placeholder="username" required>
+      <input class="form-input" id="email" type="email" name="email" placeholder="email" required>
+      <input class="form-input" id="password" type="password" name="password" placeholder="password" required>
+      <button class="form-input" id="register-button" type="submit" name="button">register</button>
+
+    </form>
+
+    <span class="already options">Already Registered?</span>
+    <a class="register options" href="/login">Log In</a>
+
+  </div>
+
+<%- include("footer") -%>

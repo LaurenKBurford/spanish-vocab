@@ -1,0 +1,32 @@
+<%- include("header") -%>
+
+<div class="begin-box">
+  <h3 class="begin-title">You don't have any words yet!</h3>
+  <form action="/get-word" method="post">
+    <button id="get-started" type="submit" name="get-word-button">
+      <svg height="35px" width="35px" viewbox="0 0 160 160">
+    <circle cx="80" cy="80" r="70" fill="#ED863A" stroke="#84041A" stroke-width="14"/>
+  <line x1="80" y1="45" x2="80" y2="115" stroke="#84041A" stroke-width="14" stroke-linecap="round"/>
+  <line x1="45" y1="80" x2="115" y2="80" stroke="#84041A" stroke-width="14" stroke-linecap="round"/>
+</svg>
+      <span id="started">GET STARTED</span></button>
+  </form>
+</div>
+
+<form id="big-plus" action="/get-word" method="post">
+    <svg height="110px" width="110px" viewbox="0 0 160 160">
+        <circle cx="80" cy="80" r="70" fill="#ED863A" stroke="#EDD0AE" stroke-width="14"/>
+      <line x1="80" y1="45" x2="80" y2="115" stroke="#EDD0AE" stroke-width="14" stroke-linecap="round"/>
+      <line x1="45" y1="80" x2="115" y2="80" stroke="#EDD0AE" stroke-width="14" stroke-linecap="round"/>
+    </svg>
+    <button id="orange-add" type="submit" name="button"></button>
+</form>
+
+<div class="logged-footer">
+  <span class="footers logged-status">Logged in as <%= user %></span>
+  <form class="" action="/logout?_method=DELETE" method="POST">
+    <button class="footers log-out" type="submit" name="button">Log Out</button>
+  </form>
+</div>
+
+<%- include("footer") -%>
