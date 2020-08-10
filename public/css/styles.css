@@ -45,9 +45,9 @@ body {
   left: 0;
   bottom: 0;
   width: 22vw;
-  height: 50vh;
+  height: auto;
   padding: 1.5rem;
-  padding-top: 19rem;
+  padding-top: 2rem;
 }
 
 .footers {
@@ -61,6 +61,19 @@ body {
 .logged-status {
   color: #EDD0AE;
   margin-bottom: 15px;
+}
+
+button.footers.log-out {
+    background-color: transparent;
+    border: none;
+    color: #FCC27C;
+    position: relative;
+    left: -7px;
+}
+
+button.footers.log-out:hover {
+    color: #E07127;
+    cursor: pointer;
 }
 
 .log-out:link {
@@ -92,21 +105,7 @@ body {
   top: 18rem;
 }
 
-#big-plus button {
-  width: 1rem;
-  height: 1rem;
-}
-
-#orange-add {
-  width: 110px !important;
-  height: 110px !important;
-  border-radius: 50%;
-  position: absolute;
-  left: 0;
-  opacity: 0;
-}
-
-#orange-add:hover {
+#big-plus:hover {
   cursor: pointer;
 }
 
@@ -118,6 +117,11 @@ body {
   font-size: 25px;
   font-family: 'Niramit', sans-serif;
   padding: 10px;
+  transition: background-color .5s ease-in-out;
+}
+
+#get-started:hover {
+  background-color: #fad09d;
 }
 
 #started {
@@ -132,6 +136,48 @@ body {
 #get-started:focus {
   outline: none;
 }
+
+/* Word Form Styles */
+
+#get-word-form {
+  position: absolute;
+  z-index: 100;
+  top: 3rem;
+  left: 15rem;
+  background-color: #ED863A;
+  border: 3px solid #8C092B;
+  width: 24rem;
+  text-align: center;
+  padding: 3rem;
+  font-size: 23px;
+  color: #330410;
+  font-family: 'Niramit', sans-serif;
+}
+
+input[type="text"] {
+    border-radius: 0;
+    border: 1px solid #8C092B;
+    width: 17rem;
+    height: 2rem;
+    font-size: 23px;
+    color: #330410;
+    font-family: 'Niramit', sans-serif;
+    padding: 5px;
+  }
+
+  #get-word-go {
+    display: block;
+    background-color: #330410;
+    border: none;
+    margin: 3rem auto 0;
+    font-family: 'Niramit', sans-serif;
+    color: #FCC27C;
+    font-size: 30px;
+    width: 5rem;
+    height: 3rem;
+    font-weight: 600;
+    padding-bottom: 10px;
+  }
 
 /* Login/Register Styles */
 
@@ -196,7 +242,7 @@ body {
 
 #username-email,
 #password,
-#username,
+#name,
 #email {
   background-color: #EDD0AE;
   border: 2px solid #84041A;
@@ -206,7 +252,7 @@ body {
 
 #username-email:focus,
 #password:focus,
-#username:focus,
+#name:focus,
 #email:focus {
   background-color: white;
   outline: none;
@@ -214,7 +260,7 @@ body {
 
 #username-email::placeholder,
 #password::placeholder,
-#username::placeholder,
+#name::placeholder,
 #email::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #84041A;
   opacity: .7; /* Firefox */
@@ -222,7 +268,7 @@ body {
 
 #username-email:-ms-input-placeholder,
 #password:-ms-input-placeholder,
-#username::placeholder,
+#name::placeholder,
 #email::placeholder { /* Internet Explorer 10-11 */
   color: #84041A;
   opacity: .7;
@@ -230,7 +276,7 @@ body {
 
 #username-email::-ms-input-placeholder,
 #password::-ms-input-placeholder,
-#username::placeholder,
+#name::placeholder,
 #email::placeholder { /* Microsoft Edge */
   color: #84041A;
   opacity: .7;
