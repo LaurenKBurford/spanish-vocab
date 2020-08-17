@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const https = require("https");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
@@ -14,7 +15,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(session({
-  secret: "spanishrocks",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false
 }));
@@ -53,7 +54,7 @@ app.get("/register", (req, res) => {
 
 app.get("/home", (req, res) => {
   if (req.isAuthenticated()){
-    res.render("home", {user: "username"});
+    res.render("home", {user: "username", error: ""});
   } else {
     res.redirect("/");
   }
@@ -100,8 +101,31 @@ app.post("/login", (req,res) => {
 
 });
 
-app.post("/get-started", (req, res) => {
-  console.log("getting word...");
+app.post("/get-word", (req, res) => {
+  const wordQuery = req.body.wordInput;
+
+  var letters = /^[A-Za-z]+$/;
+
+  if (!wordQuery) {
+    res.render("home", {user: "username", error: "Please enter a word."});
+  }
+
+    if (wordQuery.match(letters)) {
+      const query = wordQuery;
+      const url = "https://www.dictionaryapi.com/api/v3/references/spanish/json/" + query + "?key=" + process.env.API_KEY;
+
+      https.get(url, (response) => {
+        response.on("data", function(data) {
+          const translationData = JSON.parse(data);
+          const translation = translationData[0].shortdef;
+          console.log(translation);
+        });
+      });
+
+    } else {
+      res.render("home", {user: "username", error: "Please use only alphabet characters."});
+    }
+
 });
 
 app.post("/logout", (req, res) => {

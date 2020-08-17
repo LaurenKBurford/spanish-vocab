@@ -142,7 +142,7 @@ button.footers.log-out:hover {
 #get-word-form {
   position: absolute;
   z-index: 100;
-  top: 3rem;
+  top: 10rem;
   left: 15rem;
   background-color: #ED863A;
   border: 3px solid #8C092B;
@@ -152,6 +152,7 @@ button.footers.log-out:hover {
   font-size: 23px;
   color: #330410;
   font-family: 'Niramit', sans-serif;
+  display: none;
 }
 
 input[type="text"] {
@@ -163,6 +164,11 @@ input[type="text"] {
     color: #330410;
     font-family: 'Niramit', sans-serif;
     padding: 5px;
+  }
+
+  .error {
+    font-weight: 700;
+    color: #8C092B;
   }
 
   #get-word-go {
@@ -177,6 +183,24 @@ input[type="text"] {
     height: 3rem;
     font-weight: 600;
     padding-bottom: 10px;
+    transition: background-color .2s ease-in-out;
+  }
+
+  #get-word-go:hover {
+    background-color: #8C092B;
+    cursor: pointer;
+  }
+
+  #small-x {
+    position: absolute;
+    top: -18px;
+    right: -18px;
+    opacity: .8;
+  }
+
+  #small-x:hover {
+    opacity: 1;
+    cursor: pointer;
   }
 
 /* Login/Register Styles */

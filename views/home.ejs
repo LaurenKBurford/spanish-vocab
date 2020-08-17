@@ -20,12 +20,17 @@
 </div>
 
 <div id="get-word-form">
-  <form action="/get-word" method="post">
-    <p>Choose an English word:</p>
-    <input type="text" name="english-word">
-    <p>or</p>
-    <p>Choose a Spanish word:</p>
-    <input type="text" name="spanish-word">
+  <div id="small-x">
+    <svg height="35px" width="35px" viewbox="0 0 160 160">
+      <circle cx="80" cy="80" r="70" fill="#FCC27C" stroke="#84041A" stroke-width="14"/>
+      <line x1="50" y1="45" x2="110" y2="115" stroke="#84041A" stroke-width="15" stroke-linecap="round"/>
+      <line x1="50" y1="115" x2="110" y2="45" stroke="#84041A" stroke-width="15" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <form id="chooseWord" action="/get-word" method="post">
+    <p class="error"><%= error %></p>
+    <p>Choose an English or Spanish word:</p>
+    <input id="wordInput" type="text" name="wordInput" value="">
     <button id="get-word-go" type="submit" name="get-word-go">Go</button>
   </form>
 </div>
