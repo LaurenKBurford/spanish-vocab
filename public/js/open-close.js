@@ -14,6 +14,14 @@ $(document).ready(function() {
     $("#get-word-form").fadeOut();
   });
 
+  $("#small-x-choice").click(function(){
+    $(".wordChoices").fadeOut();
+  });
+
+  $("#small-x-confirm").click(function(){
+    $("confirmWord").fadeOut();
+  })
+
 
   // Client side field validation
 
@@ -21,16 +29,16 @@ $(document).ready(function() {
 
   $("#chooseWord").submit(function(event) {
 
-    if (wordInput.value == "") {
-      $(".error").html("Please enter a word.");
-      event.preventDefault();
-    }
-
       if (wordInput.value.match(letters)) {
           return true;
       } else {
-        $(".error").html("Please use only alphabet characters.");
-        event.preventDefault();
+        if (wordInput.value == "") {
+          $(".error").html("Please enter a word.");
+          event.preventDefault();
+        } else {
+          $(".error").html("Please use only alphabet characters.");
+          event.preventDefault();
+        }
       }
 
   });

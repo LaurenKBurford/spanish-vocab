@@ -139,10 +139,12 @@ button.footers.log-out:hover {
 
 /* Word Form Styles */
 
-#get-word-form {
+#get-word-form,
+.wordChoices,
+.confirmWord {
   position: absolute;
   z-index: 100;
-  top: 10rem;
+  top: 8rem;
   left: 15rem;
   background-color: #ED863A;
   border: 3px solid #8C092B;
@@ -191,17 +193,40 @@ input[type="text"] {
     cursor: pointer;
   }
 
-  #small-x {
+#small-x,
+#small-x-choice,
+#small-x-confirm {
     position: absolute;
     top: -18px;
     right: -18px;
     opacity: .8;
   }
 
-  #small-x:hover {
+  #small-x:hover,
+  #small-x-choice:hover,
+  #small-x-confirm:hover {
     opacity: 1;
     cursor: pointer;
   }
+
+.transWord {
+  border: 1px solid #8C092B;
+  background-color: #EDD0AE;
+  border-radius: 0;
+  font-weight: 500;
+  font-size: 23px;
+  font-family: 'Niramit', sans-serif;
+  color: #330410;
+  padding: 7px 15px 12px;
+  margin: 12px;
+}
+
+.transWord:hover {
+  cursor: pointer;
+  background-color: #8C092B;
+  color: #EDD0AE;
+}
+
 
 /* Login/Register Styles */
 

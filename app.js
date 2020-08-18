@@ -54,7 +54,7 @@ app.get("/register", (req, res) => {
 
 app.get("/home", (req, res) => {
   if (req.isAuthenticated()){
-    res.render("home", {user: "username", error: ""});
+    res.render("home", {user: "username", error: "", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;", original: "", translated: ""});
   } else {
     res.redirect("/");
   }
@@ -115,18 +115,70 @@ app.post("/get-word", (req, res) => {
       const url = "https://www.dictionaryapi.com/api/v3/references/spanish/json/" + query + "?key=" + process.env.API_KEY;
 
       https.get(url, (response) => {
-        response.on("data", function(data) {
-          const translationData = JSON.parse(data);
-          const translation = translationData[0].shortdef;
-          console.log(translation);
-        });
+        if (response.statusCode === 200) {
+
+          response.on("data", function(data) {
+
+            const translationData = JSON.parse(data);
+            const translation = [];
+
+            for (i = 0; i < translationData.length; i++) {
+              translation.push(translationData[i].shortdef);
+            }
+
+            if (translation) {
+
+              const separatedArray = [];
+
+            for (i = 0; i < translation.length; i++) {
+              for (j = 0; j < translation[i].length; j++) {
+                let newString = translation[i][j];
+                separatedArray.push(newString.split(","));
+              }
+            }
+
+              let listed = "";
+
+              const htmlChoices = function() {
+                  for (i = 0; i < separatedArray.length; i++) {
+                    listed += ("<button class='transWord' name='transWord' type='submit' value='" + separatedArray[i] + "'>" + separatedArray[i] + "</button>");
+                  }
+                return listed;
+
+              }
+
+              res.render("home", {user: "username", wordChoices: htmlChoices(), error: "", displayChoice: "display:block;", wordQuery: query, displayConfirm: "display:none;", original: "", translated: ""});
+
+            } else {
+              res.render("home", {user: "username", error: "Make sure you spell your word correctly.", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;" , original: "", translated: ""});
+            }
+
+          });
+
+        } else {
+            res.render("home", {user: "username", error: "", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;" , original: "", translated: ""});
+        }
+
       });
 
     } else {
-      res.render("home", {user: "username", error: "Please use only alphabet characters."});
+      res.render("home", {user: "username", error: "Please use only alphabet characters.", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:none;", original: "", translated: ""});
     }
 
 });
+
+app.post("/word-chosen", (req, res) => {
+  const wordChosen = req.body.transWord;
+  const originalWord = req.body.originalWord;
+  const body = req.body;
+
+  res.render("home", {user: "username", error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:block;", original: originalWord, translated: wordChosen});
+
+});
+
+app.post("/confirm-word", (req, res) => {
+  console.log("Saving word...");
+})
 
 app.post("/logout", (req, res) => {
   req.logout();

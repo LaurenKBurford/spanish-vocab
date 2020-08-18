@@ -35,6 +35,36 @@
   </form>
 </div>
 
+
+<div class="wordChoices" style=<%= displayChoice %>>
+  <div id="small-x-choice">
+    <svg height="35px" width="35px" viewbox="0 0 160 160">
+      <circle cx="80" cy="80" r="70" fill="#FCC27C" stroke="#84041A" stroke-width="14"/>
+      <line x1="50" y1="45" x2="110" y2="115" stroke="#84041A" stroke-width="15" stroke-linecap="round"/>
+      <line x1="50" y1="115" x2="110" y2="45" stroke="#84041A" stroke-width="15" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <p>Choose your translation:</p>
+  <form id="wordChoosing" action="/word-chosen" method="post">
+    <input type="hidden" name="originalWord" value=<%- wordQuery %>>
+    <%- wordChoices %>
+  </form>
+</div>
+
+<div class="confirmWord" style=<%= displayConfirm %>>
+  <div id="small-x-confirm">
+    <svg height="35px" width="35px" viewbox="0 0 160 160">
+      <circle cx="80" cy="80" r="70" fill="#FCC27C" stroke="#84041A" stroke-width="14"/>
+      <line x1="50" y1="45" x2="110" y2="115" stroke="#84041A" stroke-width="15" stroke-linecap="round"/>
+      <line x1="50" y1="115" x2="110" y2="45" stroke="#84041A" stroke-width="15" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <form action="confirm-word" method="post">
+    <span><%= original %></span><span><%= translated %></span>
+    <button type="submit" name="button">Confirm</button>
+  </form>
+</div>
+
 <div class="logged-footer">
   <span class="footers logged-status">Logged in as <%= user %></span>
   <form class="" action="/logout" method="POST">
