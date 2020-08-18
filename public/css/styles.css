@@ -209,7 +209,8 @@ input[type="text"] {
     cursor: pointer;
   }
 
-.transWord {
+.transWord,
+.confirmButton {
   border: 1px solid #8C092B;
   background-color: #EDD0AE;
   border-radius: 0;
@@ -218,15 +219,29 @@ input[type="text"] {
   font-family: 'Niramit', sans-serif;
   color: #330410;
   padding: 7px 15px 12px;
-  margin: 12px;
 }
 
-.transWord:hover {
+.transWord {
+  margin: 5px;
+}
+
+.confirmButton {
+  display: block;
+  margin: 45px auto 0px;
+}
+
+.transWord:hover,
+.confirmButton:hover {
   cursor: pointer;
   background-color: #8C092B;
   color: #EDD0AE;
 }
 
+.spanConfirm {
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0 10px;
+}
 
 /* Login/Register Styles */
 

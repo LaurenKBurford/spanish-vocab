@@ -30,7 +30,12 @@
   <form id="chooseWord" action="/get-word" method="post">
     <p class="error"><%= error %></p>
     <p>Choose an English or Spanish word:</p>
-    <input id="wordInput" type="text" name="wordInput" value="">
+    <input id="wordInput" type="text" name="wordInput">
+    <p>This word is:</p>
+    <input type="radio" name="englishOrSpanish" id="english" value="english" required>
+    <label for="english">English</label>
+    <input type="radio" name="englishOrSpanish" id="spanish" value="spanish">
+    <label for="spanish">Spanish</label>
     <button id="get-word-go" type="submit" name="get-word-go">Go</button>
   </form>
 </div>
@@ -47,6 +52,7 @@
   <p>Choose your translation:</p>
   <form id="wordChoosing" action="/word-chosen" method="post">
     <input type="hidden" name="originalWord" value=<%- wordQuery %>>
+    <input type="hidden" name="firstLanguage" value=<%- engOrSpan %>>
     <%- wordChoices %>
   </form>
 </div>
@@ -60,8 +66,11 @@
     </svg>
   </div>
   <form action="confirm-word" method="post">
-    <span><%= original %></span><span><%= translated %></span>
-    <button type="submit" name="button">Confirm</button>
+    <input type="hidden" name="initalLang" value=<%= eOrs %>>
+    <input type="hidden" name="originConfirm"  value=<%= original %>>
+    <input type="hidden" name="transConfirm"  value=<%= translatedEncoded %>>
+    <span class="spanConfirm"><%= original %></span><span>=</span><span class="spanConfirm"><%= translated %></span>
+    <button type="submit" class="confirmButton" name="button">Confirm</button>
   </form>
 </div>
 

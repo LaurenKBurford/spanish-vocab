@@ -19,7 +19,7 @@ $(document).ready(function() {
   });
 
   $("#small-x-confirm").click(function(){
-    $("confirmWord").fadeOut();
+    $(".confirmWord").fadeOut();
   })
 
 

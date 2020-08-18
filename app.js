@@ -54,7 +54,7 @@ app.get("/register", (req, res) => {
 
 app.get("/home", (req, res) => {
   if (req.isAuthenticated()){
-    res.render("home", {user: "username", error: "", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;", original: "", translated: ""});
+    res.render("home", {user: "username", error: "", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: ""});
   } else {
     res.redirect("/");
   }
@@ -103,6 +103,7 @@ app.post("/login", (req,res) => {
 
 app.post("/get-word", (req, res) => {
   const wordQuery = req.body.wordInput;
+  const englishSpanish = req.body.englishOrSpanish;
 
   var letters = /^[A-Za-z]+$/;
 
@@ -117,9 +118,17 @@ app.post("/get-word", (req, res) => {
       https.get(url, (response) => {
         if (response.statusCode === 200) {
 
+          let body = "";
+
           response.on("data", function(data) {
 
-            const translationData = JSON.parse(data);
+            body += data;
+
+          });
+
+          response.on("end", function(){
+
+            const translationData = JSON.parse(body);
             const translation = [];
 
             for (i = 0; i < translationData.length; i++) {
@@ -141,43 +150,54 @@ app.post("/get-word", (req, res) => {
 
               const htmlChoices = function() {
                   for (i = 0; i < separatedArray.length; i++) {
-                    listed += ("<button class='transWord' name='transWord' type='submit' value='" + separatedArray[i] + "'>" + separatedArray[i] + "</button>");
+                    for (j = 0; j < separatedArray[i].length; j++) {
+                    listed += ("<button class='transWord' name='transWord' type='submit' value='" + separatedArray[i][j] + "'>" + separatedArray[i][j] + "</button>");
+                    }
                   }
                 return listed;
 
               }
 
-              res.render("home", {user: "username", wordChoices: htmlChoices(), error: "", displayChoice: "display:block;", wordQuery: query, displayConfirm: "display:none;", original: "", translated: ""});
+              res.render("home", {user: "username", wordChoices: htmlChoices(), error: "", displayChoice: "display:block;", wordQuery: query, displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: englishSpanish, eOrs: ""});
 
             } else {
-              res.render("home", {user: "username", error: "Make sure you spell your word correctly.", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;" , original: "", translated: ""});
+              res.render("home", {user: "username", error: "Make sure you spell your word correctly.", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;" , original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: ""});
             }
 
           });
 
         } else {
-            res.render("home", {user: "username", error: "", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;" , original: "", translated: ""});
+            res.render("home", {user: "username", error: "", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;" , original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: ""});
         }
 
       });
 
     } else {
-      res.render("home", {user: "username", error: "Please use only alphabet characters.", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:none;", original: "", translated: ""});
+      res.render("home", {user: "username", error: "Please use only alphabet characters.", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: ""});
     }
 
 });
 
 app.post("/word-chosen", (req, res) => {
   const wordChosen = req.body.transWord;
+  const wordChosenEncoded = encodeURI(req.body.transWord);
   const originalWord = req.body.originalWord;
-  const body = req.body;
+  const englishOrSpanish = req.body.firstLanguage;
 
-  res.render("home", {user: "username", error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:block;", original: originalWord, translated: wordChosen});
+  res.render("home", {user: "username", error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:block;", original: originalWord, translated: wordChosen, translatedEncoded: wordChosenEncoded, engOrSpan: "", eOrs: englishOrSpanish});
 
 });
 
 app.post("/confirm-word", (req, res) => {
-  console.log("Saving word...");
+  const language = req.body.initalLang;
+  const providedWord = req.body.originConfirm;
+  const givenWord = req.body.transConfirm;
+
+  console.log(language);
+  console.log(providedWord);
+  console.log(givenWord);
+
+  res.render("home", {user: "username", error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: ""});
 })
 
 app.post("/logout", (req, res) => {
