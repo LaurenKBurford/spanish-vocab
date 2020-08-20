@@ -396,3 +396,32 @@ input[type="text"] {
 .already {
   color: #84041A;
 }
+
+/* Word Boxes */
+
+.wordset {
+  border: 2px solid #84041A;
+  margin: 10px;
+  position: relative;
+  display: inline-flex;
+  padding: 0.75rem;
+  font-family: "Niramit", sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: #330410;
+  background-color: #ED863A;
+}
+
+.smallXdelete {
+  position: absolute;
+  top: -13px;
+  right: -13px;
+  opacity: .8;
+  z-index: 100;
+}
+
+
+  .smallXdelete:hover {
+    opacity: 1;
+    cursor: pointer;
+  }

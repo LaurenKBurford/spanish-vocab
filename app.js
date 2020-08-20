@@ -28,7 +28,8 @@ mongoose.connect("mongodb://localhost:27017/userDB", {useNewUrlParser: true, use
 const userSchema = new mongoose.Schema ({
   username: String,
   email: String,
-  password: String
+  password: String,
+  words: [{english: String, spanish: String}]
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -54,7 +55,30 @@ app.get("/register", (req, res) => {
 
 app.get("/home", (req, res) => {
   if (req.isAuthenticated()){
-    res.render("home", {user: "username", error: "", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: ""});
+    let usersWords = "";
+    User.findById(req.user.id, function(err, foundUser){
+      if(err){
+        console.log(err);
+      } else {
+        for (i = 0; i < foundUser.words.length; i++) {
+          const englishVersion = decodeURI(foundUser.words[i].english);
+          const spanishVersion = decodeURI(foundUser.words[i].spanish);
+          let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='25px' width='25px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#FCC27C' stroke='#84041A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#84041A' stroke-width='15' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#84041A' stroke-width='15' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+          usersWords += currentWord;
+        }
+
+        let wordList = "";
+        let beginBoxDisplay = "display:block";
+
+        if (usersWords != "") {
+          wordList = usersWords;
+          beginBoxDisplay = "display:none;";
+        }
+
+        res.render("home", {user: "lauren", error: "", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: "", duplicateError: "", displayConfirmButton: "display:block;", beginBoxDisplay: beginBoxDisplay, wordList: wordList});
+      }
+    });
+
   } else {
     res.redirect("/");
   }
@@ -82,24 +106,13 @@ app.get("/login", (req, res) => {
   }
 });
 
-app.post("/login", (req,res) => {
-
-  const user = new User({
-    username: req.body.username,
-    password: req.body.password
-  });
-
-  req.login(user, function(err){
-    if (err) {
-      console.log(err);
-    } else {
-      passport.authenticate("local")(req, res, function(){
-        res.redirect("/home");
-      });
-    }
-  });
-
-});
+app.post("/login",
+      passport.authenticate("local", {
+        successRedirect: "/home",
+        failureRedirect: "/login",
+        failureFlash: false
+  })
+);
 
 app.post("/get-word", (req, res) => {
   const wordQuery = req.body.wordInput;
@@ -158,22 +171,133 @@ app.post("/get-word", (req, res) => {
 
               }
 
-              res.render("home", {user: "username", wordChoices: htmlChoices(), error: "", displayChoice: "display:block;", wordQuery: query, displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: englishSpanish, eOrs: ""});
+              if (req.isAuthenticated()){
+                let usersWords = "";
+                User.findById(req.user.id, function(err, foundUser){
+                  if(err){
+                    console.log(err);
+                  } else {
+                    for (i = 0; i < foundUser.words.length; i++) {
+                      const englishVersion = decodeURI(foundUser.words[i].english);
+                      const spanishVersion = decodeURI(foundUser.words[i].spanish);
+                      let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='25px' width='25px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#FCC27C' stroke='#84041A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#84041A' stroke-width='15' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#84041A' stroke-width='15' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+                      usersWords += currentWord;
+                    }
+
+                    let wordList = "";
+                    let beginBoxDisplay = "display:block";
+
+                    if (usersWords != "") {
+                      wordList = usersWords;
+                      beginBoxDisplay = "display:none;";
+                    }
+
+                    res.render("home", {user: "username", wordChoices: htmlChoices(), error: "", displayChoice: "display:block;", wordQuery: query, displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: englishSpanish, eOrs: "", duplicateError: "", displayConfirmButton: "display:block;", beginBoxDisplay: beginBoxDisplay, wordList: wordList});
+                  }
+                });
+
+              } else {
+                res.redirect("/");
+              }
 
             } else {
-              res.render("home", {user: "username", error: "Make sure you spell your word correctly.", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;" , original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: ""});
+              if (req.isAuthenticated()){
+                let usersWords = "";
+                User.findById(req.user.id, function(err, foundUser){
+                  if(err){
+                    console.log(err);
+                  } else {
+                    for (i = 0; i < foundUser.words.length; i++) {
+                      const englishVersion = decodeURI(foundUser.words[i].english);
+                      const spanishVersion = decodeURI(foundUser.words[i].spanish);
+                      let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='25px' width='25px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#FCC27C' stroke='#84041A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#84041A' stroke-width='15' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#84041A' stroke-width='15' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+                      usersWords += currentWord;
+                    }
+
+                    let wordList = "";
+                    let beginBoxDisplay = "display:block";
+
+                    if (usersWords != "") {
+                      wordList = usersWords;
+                      beginBoxDisplay = "display:none;";
+                    }
+
+                    res.render("home", {user: "username", error: "Make sure you spell your word correctly.", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;" , original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: "", duplicateError: "", displayConfirmButton: "display:block;", beginBoxDisplay: beginBoxDisplay, wordList: wordList});
+                  }
+                });
+
+              } else {
+                res.redirect("/");
+              }
+
             }
 
           });
 
         } else {
-            res.render("home", {user: "username", error: "", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;" , original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: ""});
+          if (req.isAuthenticated()){
+            let usersWords = "";
+            User.findById(req.user.id, function(err, foundUser){
+              if(err){
+                console.log(err);
+              } else {
+                for (i = 0; i < foundUser.words.length; i++) {
+                  const englishVersion = decodeURI(foundUser.words[i].english);
+                  const spanishVersion = decodeURI(foundUser.words[i].spanish);
+                  let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='25px' width='25px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#FCC27C' stroke='#84041A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#84041A' stroke-width='15' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#84041A' stroke-width='15' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+                  usersWords += currentWord;
+                }
+
+                let wordList = "";
+                let beginBoxDisplay = "display:block";
+
+                if (usersWords != "") {
+                  wordList = usersWords;
+                  beginBoxDisplay = "display:none;";
+                }
+
+                res.render("home", {user: "username", error: "", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;" , original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: "", duplicateError: "", displayConfirmButton: "display:block;", beginBoxDisplay: beginBoxDisplay, wordList: wordList});
+              }
+            });
+
+          } else {
+            res.redirect("/");
+          }
+
         }
 
       });
 
     } else {
-      res.render("home", {user: "username", error: "Please use only alphabet characters.", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: ""});
+      if (req.isAuthenticated()){
+        let usersWords = "";
+        User.findById(req.user.id, function(err, foundUser){
+          if(err){
+            console.log(err);
+          } else {
+            for (i = 0; i < foundUser.words.length; i++) {
+              const englishVersion = decodeURI(foundUser.words[i].english);
+              const spanishVersion = decodeURI(foundUser.words[i].spanish);
+              let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='25px' width='25px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#FCC27C' stroke='#84041A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#84041A' stroke-width='15' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#84041A' stroke-width='15' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+              usersWords += currentWord;
+            }
+
+            let wordList = "";
+            let beginBoxDisplay = "display:block";
+
+            if (usersWords != "") {
+              wordList = usersWords;
+              beginBoxDisplay = "display:none;";
+            }
+
+            res.render("home", {user: "username", error: "Please use only alphabet characters.", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: "", duplicateError: "", displayConfirmButton: "display:block;", beginBoxDisplay: beginBoxDisplay, wordList: wordList});
+          }
+        });
+
+      } else {
+        res.redirect("/");
+      }
+
     }
 
 });
@@ -184,20 +308,148 @@ app.post("/word-chosen", (req, res) => {
   const originalWord = req.body.originalWord;
   const englishOrSpanish = req.body.firstLanguage;
 
-  res.render("home", {user: "username", error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:block;", original: originalWord, translated: wordChosen, translatedEncoded: wordChosenEncoded, engOrSpan: "", eOrs: englishOrSpanish});
+  if (req.isAuthenticated()){
+    let usersWords = "";
+    User.findById(req.user.id, function(err, foundUser){
+      if(err){
+        console.log(err);
+      } else {
+        for (i = 0; i < foundUser.words.length; i++) {
+          const englishVersion = decodeURI(foundUser.words[i].english);
+          const spanishVersion = decodeURI(foundUser.words[i].spanish);
+          let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='25px' width='25px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#FCC27C' stroke='#84041A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#84041A' stroke-width='15' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#84041A' stroke-width='15' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+          usersWords += currentWord;
+        }
+
+        let wordList = "";
+        let beginBoxDisplay = "display:block";
+
+        if (usersWords != "") {
+          wordList = usersWords;
+          beginBoxDisplay = "display:none;";
+        }
+
+        res.render("home", {user: "username", error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:block;", original: originalWord, translated: wordChosen, translatedEncoded: wordChosenEncoded, engOrSpan: "", eOrs: englishOrSpanish, duplicateError: "", displayConfirmButton: "display:block;", beginBoxDisplay: beginBoxDisplay, wordList: wordList});
+      }
+    });
+
+  } else {
+    res.redirect("/");
+  }
 
 });
 
 app.post("/confirm-word", (req, res) => {
   const language = req.body.initalLang;
   const providedWord = req.body.originConfirm;
+  const originalWord = decodeURI(providedWord);
   const givenWord = req.body.transConfirm;
+  const wordChosen = decodeURI(givenWord);
 
-  console.log(language);
-  console.log(providedWord);
-  console.log(givenWord);
+  User.findById(req.user.id, function(err, foundUser){
+    if(err){
+      console.log(err);
+    } else {
+      if (foundUser) {
+        let duplicate = false;
+        if (language === "english") {
 
-  res.render("home", {user: "username", error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: ""});
+          for (i = 0; i < foundUser.words.length; i++) {
+            if ((foundUser.words[i].english == providedWord) && (foundUser.words[i].spanish == givenWord)) {
+              duplicate = true;
+              if (req.isAuthenticated()){
+                let usersWords = "";
+                User.findById(req.user.id, function(err, foundUser){
+                  if(err){
+                    console.log(err);
+                  } else {
+                    for (i = 0; i < foundUser.words.length; i++) {
+                      const englishVersion = decodeURI(foundUser.words[i].english);
+                      const spanishVersion = decodeURI(foundUser.words[i].spanish);
+                      let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='25px' width='25px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#FCC27C' stroke='#84041A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#84041A' stroke-width='15' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#84041A' stroke-width='15' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+                      usersWords += currentWord;
+                    }
+
+                    let wordList = "";
+                    let beginBoxDisplay = "display:block";
+
+                    if (usersWords != "") {
+                      wordList = usersWords;
+                      beginBoxDisplay = "display:none;";
+                    }
+
+                    res.render("home", {user: "username", error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:block;", original: originalWord, translated: wordChosen, translatedEncoded: providedWord, engOrSpan: "", eOrs: language, duplicateError: "You already have this word!", displayConfirmButton: "display:none;", beginBoxDisplay: beginBoxDisplay, wordList: wordList});
+                  }
+                });
+
+              } else {
+                res.redirect("/");
+              }
+
+            }
+          }
+
+            if (!duplicate) {
+              let newWord = {english: providedWord, spanish: givenWord};
+              foundUser.words.push(newWord);
+              foundUser.save(function(){
+                res.redirect("/home");
+              });
+            }
+
+
+        } else if (language === "spanish") {
+            for (i = 0; i < foundUser.words.length; i++) {
+              if ((foundUser.words[i].spanish == providedWord) && (foundUser.words[i].english == givenWord)) {
+                duplicate = true;
+                if (req.isAuthenticated()){
+                  let usersWords = "";
+                  User.findById(req.user.id, function(err, foundUser){
+                    if(err){
+                      console.log(err);
+                    } else {
+                      for (i = 0; i < foundUser.words.length; i++) {
+                        const englishVersion = decodeURI(foundUser.words[i].english);
+                        const spanishVersion = decodeURI(foundUser.words[i].spanish);
+                        let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='25px' width='25px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#FCC27C' stroke='#84041A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#84041A' stroke-width='15' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#84041A' stroke-width='15' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+                        usersWords += currentWord;
+                      }
+
+                      let wordList = "";
+                      let beginBoxDisplay = "display:block";
+
+                      if (usersWords != "") {
+                        wordList = usersWords;
+                        beginBoxDisplay = "display:none;";
+                      }
+
+                      res.render("home", {user: "username", error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:block;", original: originalWord, translated: wordChosen, translatedEncoded: providedWord, engOrSpan: "", eOrs: language, duplicateError: "You already have this word!", displayConfirmButton: "display:none;", beginBoxDisplay: beginBoxDisplay, wordList: wordList});
+                    }
+                  });
+
+                } else {
+                  res.redirect("/");
+                }
+                }
+              }
+
+              if (!duplicate) {
+                let newWord = {english: givenWord, spanish: providedWord};
+                foundUser.words.push({newWord});
+                foundUser.save(function(){
+                  res.redirect("/home");
+                });
+              }
+
+        }
+      }
+    }
+  });
+
+})
+
+app.post("/deleteWord", (req, res) => {
+  console.log("deleting word...")
 })
 
 app.post("/logout", (req, res) => {

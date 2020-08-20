@@ -1,6 +1,14 @@
 <%- include("header") -%>
 
-<div class="begin-box">
+<div>
+  <form class="removeWord" action="/deleteWord" method="post">
+    <input id="engSide" type="hidden" name="englishSide" value="">
+    <input id="spanSide" type="hidden" name="spanishSide" value="">
+  <%- wordList %>
+  </form>
+</div>
+
+<div class="begin-box" style=<%= beginBoxDisplay %>>
   <h3 class="begin-title">You don't have any words yet!</h3>
     <div id="get-started" type="submit" name="get-word-button">
       <svg height="35px" width="35px" viewbox="0 0 160 160">
@@ -66,11 +74,12 @@
     </svg>
   </div>
   <form action="confirm-word" method="post">
+    <p class="error"><%= duplicateError %></p>
     <input type="hidden" name="initalLang" value=<%= eOrs %>>
     <input type="hidden" name="originConfirm"  value=<%= original %>>
     <input type="hidden" name="transConfirm"  value=<%= translatedEncoded %>>
     <span class="spanConfirm"><%= original %></span><span>=</span><span class="spanConfirm"><%= translated %></span>
-    <button type="submit" class="confirmButton" name="button">Confirm</button>
+    <button type="submit" class="confirmButton" name="button" style=<%= displayConfirmButton %>>Confirm</button>
   </form>
 </div>
 
