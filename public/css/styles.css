@@ -155,6 +155,7 @@ button.footers.log-out:hover {
   color: #330410;
   font-family: 'Niramit', sans-serif;
   display: none;
+  margin-bottom: 10rem;
 }
 
 input[type="text"] {
@@ -400,28 +401,35 @@ input[type="text"] {
 /* Word Boxes */
 
 .wordset {
-  border: 2px solid #84041A;
+  border: 1px solid #84041A;
   margin: 10px;
   position: relative;
   display: inline-flex;
-  padding: 0.75rem;
+  padding: 4px 12px 9px;
   font-family: "Niramit", sans-serif;
   font-size: 22px;
-  font-weight: 400;
-  color: #330410;
-  background-color: #ED863A;
+  font-weight: 500;
+  color: #84041A;
+  background-color: #EDD0AE;
+}
+
+.wordset:hover {
+  cursor: pointer;
 }
 
 .smallXdelete {
   position: absolute;
-  top: -13px;
-  right: -13px;
+  top: -14px;
+  right: -12px;
   opacity: .8;
   z-index: 100;
 }
 
-
   .smallXdelete:hover {
     opacity: 1;
     cursor: pointer;
+  }
+
+  .invisible {
+    display: none;
   }
