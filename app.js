@@ -28,7 +28,7 @@ mongoose.set('useFindAndModify', false);
 
 const userSchema = new mongoose.Schema ({
   username: String,
-  email: String,
+  name: String,
   password: String,
   words: [{english: String, spanish: String}]
 });
@@ -51,7 +51,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/register", (req, res) => {
-  res.render("register");
+  res.render("register", {registerError: ""});
 });
 
 app.get("/home", (req, res) => {
@@ -76,7 +76,7 @@ app.get("/home", (req, res) => {
           beginBoxDisplay = "display:none;";
         }
 
-        res.render("home", {user: "lauren", error: "", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: "", duplicateError: "", displayConfirmButton: "display:block;", beginBoxDisplay: beginBoxDisplay, wordList: wordList});
+        res.render("home", {user: req.user.name, error: "", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: "", duplicateError: "", displayConfirmButton: "display:block;", beginBoxDisplay: beginBoxDisplay, wordList: wordList, wordFormDisplay: "display:none;", currentEmail: req.user.username, changeConfirmBox: "display:none;", confirmMessage: ""});
       }
     });
 
@@ -89,9 +89,21 @@ app.post("/register", (req, res) => {
   User.register({username: req.body.username}, req.body.password, function(err, user){
     if (err) {
     console.log(err);
-    res.redirect("/register");
+    res.render("register", {registerError: "This email is already registered."});
     } else {
       passport.authenticate("local")(req, res, function(){
+        User.findById(req.user.id, function(err, foundUser){
+          if(err){
+            console.log(err);
+          } else {
+                let userId = foundUser.id;
+                User.updateOne({ _id: userId }, {
+                        "name": req.body.name
+                  }, (err, result) => {
+                    console.log(err);
+                  });
+          }
+        });
         res.redirect("/home");
       });
     }
@@ -122,7 +134,7 @@ app.post("/get-word", (req, res) => {
   var letters = /^[A-Za-z]+$/;
 
   if (!wordQuery) {
-    res.render("home", {user: "username", error: "Please enter a word."});
+    res.redirect("/home");
   }
 
     if (wordQuery.match(letters)) {
@@ -130,6 +142,7 @@ app.post("/get-word", (req, res) => {
       const url = "https://www.dictionaryapi.com/api/v3/references/spanish/json/" + query + "?key=" + process.env.API_KEY;
 
       https.get(url, (response) => {
+
         if (response.statusCode === 200) {
 
           let body = "";
@@ -145,23 +158,26 @@ app.post("/get-word", (req, res) => {
             const translationData = JSON.parse(body);
             const translation = [];
 
-            for (i = 0; i < translationData.length; i++) {
-              translation.push(translationData[i].shortdef);
-            }
-
-            if (translation) {
+              // Deconstruct the returned data and isolate the translated words
+                for (i = 0; i < translationData.length; i++) {
+                  translation.push(translationData[i].shortdef);
+                }
 
               const separatedArray = [];
 
+              if ((translation[0] != undefined) && (translation != [])) {
+
             for (i = 0; i < translation.length; i++) {
-              for (j = 0; j < translation[i].length; j++) {
-                let newString = translation[i][j];
-                separatedArray.push(newString.split(","));
+              if (translation[i] != undefined) {
+                for (j = 0; j < translation[i].length; j++) {
+                  let newString = translation[i][j];
+                  separatedArray.push(newString.split(","));
+                }
               }
             }
 
               let listed = "";
-
+              // Put the translated words into HTML elements
               const htmlChoices = function() {
                   for (i = 0; i < separatedArray.length; i++) {
                     for (j = 0; j < separatedArray[i].length; j++) {
@@ -171,7 +187,7 @@ app.post("/get-word", (req, res) => {
                 return listed;
 
               }
-
+              // If the user is authenticated, display their words on the page
               if (req.isAuthenticated()){
                 let usersWords = "";
                 User.findById(req.user.id, function(err, foundUser){
@@ -193,16 +209,17 @@ app.post("/get-word", (req, res) => {
                       beginBoxDisplay = "display:none;";
                     }
 
-                    res.render("home", {user: "username", wordChoices: htmlChoices(), error: "", displayChoice: "display:block;", wordQuery: query, displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: englishSpanish, eOrs: "", duplicateError: "", displayConfirmButton: "display:block;", beginBoxDisplay: beginBoxDisplay, wordList: wordList});
+                    res.render("home", {user: req.user.name, wordChoices: htmlChoices(), error: "", displayChoice: "display:block;", wordQuery: query, displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: englishSpanish, eOrs: "", duplicateError: "", displayConfirmButton: "display:block;", beginBoxDisplay: beginBoxDisplay, wordList: wordList, wordFormDisplay: "display:none;", currentEmail: req.user.username, changeConfirmBox: "display:none;", confirmMessage: ""});
                   }
+
                 });
 
               } else {
                 res.redirect("/");
               }
-
-            } else {
-              if (req.isAuthenticated()){
+              // If there is no translation, show a spelling warning
+            } else if ((translation[0] == undefined) || (translation == [])) {
+              if (req.isAuthenticated()) {
                 let usersWords = "";
                 User.findById(req.user.id, function(err, foundUser){
                   if(err){
@@ -223,7 +240,7 @@ app.post("/get-word", (req, res) => {
                       beginBoxDisplay = "display:none;";
                     }
 
-                    res.render("home", {user: "username", error: "Make sure you spell your word correctly.", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;" , original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: "", duplicateError: "", displayConfirmButton: "display:block;", beginBoxDisplay: beginBoxDisplay, wordList: wordList});
+                    res.render("home", {user: req.user.name, error: "Make sure you spell your word correctly.", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;" , original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: "", duplicateError: "", displayConfirmButton: "display:block;", beginBoxDisplay: beginBoxDisplay, wordList: wordList, wordFormDisplay: "display:block;", currentEmail: req.user.username, changeConfirmBox: "display:none;", confirmMessage: ""});
                   }
                 });
 
@@ -233,7 +250,9 @@ app.post("/get-word", (req, res) => {
 
             }
 
+
           });
+          // If the response status code is something other than 200, render the homepage
 
         } else {
           if (req.isAuthenticated()){
@@ -257,7 +276,7 @@ app.post("/get-word", (req, res) => {
                   beginBoxDisplay = "display:none;";
                 }
 
-                res.render("home", {user: "username", error: "", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;" , original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: "", duplicateError: "", displayConfirmButton: "display:block;", beginBoxDisplay: beginBoxDisplay, wordList: wordList});
+                res.render("home", {user: req.user.name, error: "", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;" , original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: "", duplicateError: "", displayConfirmButton: "display:block;", beginBoxDisplay: beginBoxDisplay, wordList: wordList, wordFormDisplay: "display:none;", currentEmail: req.user.username, changeConfirmBox: "display:none;", confirmMessage: ""});
               }
             });
 
@@ -268,7 +287,7 @@ app.post("/get-word", (req, res) => {
         }
 
       });
-
+// If there are non-alphabetical characters, render the page with an error
     } else {
       if (req.isAuthenticated()){
         let usersWords = "";
@@ -291,7 +310,7 @@ app.post("/get-word", (req, res) => {
               beginBoxDisplay = "display:none;";
             }
 
-            res.render("home", {user: "username", error: "Please use only alphabet characters.", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: "", duplicateError: "", displayConfirmButton: "display:block;", beginBoxDisplay: beginBoxDisplay, wordList: wordList});
+            res.render("home", {user: req.user.name, error: "Please use only alphabet characters.", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: "", duplicateError: "", displayConfirmButton: "display:block;", beginBoxDisplay: beginBoxDisplay, wordList: wordList, wordFormDisplay: "display:none;", currentEmail: req.user.username, changeConfirmBox: "display:none;", confirmMessage: ""});
           }
         });
 
@@ -330,7 +349,7 @@ app.post("/word-chosen", (req, res) => {
           beginBoxDisplay = "display:none;";
         }
 
-        res.render("home", {user: "username", error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:block;", original: originalWord, translated: wordChosen, translatedEncoded: wordChosenEncoded, engOrSpan: "", eOrs: englishOrSpanish, duplicateError: "", displayConfirmButton: "display:block;", beginBoxDisplay: beginBoxDisplay, wordList: wordList});
+        res.render("home", {user: req.user.name, error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:block;", original: originalWord, translated: wordChosen, translatedEncoded: wordChosenEncoded, engOrSpan: "", eOrs: englishOrSpanish, duplicateError: "", displayConfirmButton: "display:block;", beginBoxDisplay: beginBoxDisplay, wordList: wordList, wordFormDisplay: "display:none;", currentEmail: req.user.username, changeConfirmBox: "display:none;", confirmMessage: ""});
       }
     });
 
@@ -379,7 +398,7 @@ app.post("/confirm-word", (req, res) => {
                       beginBoxDisplay = "display:none;";
                     }
 
-                    res.render("home", {user: "username", error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:block;", original: originalWord, translated: wordChosen, translatedEncoded: providedWord, engOrSpan: "", eOrs: language, duplicateError: "You already have this word!", displayConfirmButton: "display:none;", beginBoxDisplay: beginBoxDisplay, wordList: wordList});
+                    res.render("home", {user: req.user.name, error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:block;", original: originalWord, translated: wordChosen, translatedEncoded: providedWord, engOrSpan: "", eOrs: language, duplicateError: "You already have this word!", displayConfirmButton: "display:none;", beginBoxDisplay: beginBoxDisplay, wordList: wordList, wordFormDisplay: "display:none;", currentEmail: req.user.username, changeConfirmBox: "display:none;", confirmMessage: ""});
                   }
                 });
 
@@ -426,7 +445,7 @@ app.post("/confirm-word", (req, res) => {
                         beginBoxDisplay = "display:none;";
                       }
 
-                      res.render("home", {user: "username", error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:block;", original: originalWord, translated: wordChosen, translatedEncoded: providedWord, engOrSpan: "", eOrs: language, duplicateError: "You already have this word!", displayConfirmButton: "display:none;", beginBoxDisplay: beginBoxDisplay, wordList: wordList});
+                      res.render("home", {user: req.user.name, error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:block;", original: originalWord, translated: wordChosen, translatedEncoded: providedWord, engOrSpan: "", eOrs: language, duplicateError: "You already have this word!", displayConfirmButton: "display:none;", beginBoxDisplay: beginBoxDisplay, wordList: wordList, wordFormDisplay: "display:none;", currentEmail: req.user.username, changeConfirmBox: "display:none;", confirmMessage: ""});
                     }
                   });
 
@@ -501,13 +520,149 @@ app.post("/deleteWord", (req, res) => {
             beginBoxDisplay = "display:none;";
           }
 
-          res.render("home", {user: "username", error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: "", duplicateError: "You already have this word!", displayConfirmButton: "display:none;", beginBoxDisplay: beginBoxDisplay, wordList: wordList});
+          res.render("home", {user: req.user.name, error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: "", duplicateError: "You already have this word!", displayConfirmButton: "display:none;", beginBoxDisplay: beginBoxDisplay, wordList: wordList, wordFormDisplay: "display:none;", currentEmail: req.user.username, changeConfirmBox: "display:none;", confirmMessage: ""});
 
         }
 
       });
 
 })
+
+app.post("/changeUsername", (req,res) => {
+  const newUsername = req.body.newUsername;
+
+  User.findById(req.user.id, function(err, foundUser){
+    let usersWords = "";
+    if(err){
+      console.log(err);
+    } else {
+      User.updateOne({ _id: foundUser.id }, {
+              "name": newUsername
+        }, (err, result) => {
+          console.log(err);
+        });
+        for (i = 0; i < foundUser.words.length; i++) {
+          const englishVersion = decodeURI(foundUser.words[i].english);
+          const spanishVersion = decodeURI(foundUser.words[i].spanish);
+          let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#ED863A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+          usersWords += currentWord;
+        }
+
+        let wordList = "";
+        let beginBoxDisplay = "display:block";
+
+        if (usersWords != "") {
+          wordList = usersWords;
+          beginBoxDisplay = "display:none;";
+        }
+
+        res.render("home", {user: newUsername, error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: "", duplicateError: "", displayConfirmButton: "display:none;", beginBoxDisplay: beginBoxDisplay, wordList: wordList, wordFormDisplay: "display:none;", currentEmail: req.user.username, changeConfirmBox: "display:block;", confirmMessage: "Username Changed."});
+    }
+  });
+});
+
+app.post("/changePassword", (req,res) => {
+  const oldPassword = req.body.currentPassword;
+  const newPassword = req.body.newPassword;
+  User.findById(req.user.id, function(err, foundUser){
+    let usersWords = "";
+    if(err){
+      console.log(err);
+    } else {
+      req.user.changePassword(oldPassword, newPassword, function(err) {
+        if (err) {
+          console.log(err);
+          for (i = 0; i < foundUser.words.length; i++) {
+            const englishVersion = decodeURI(foundUser.words[i].english);
+            const spanishVersion = decodeURI(foundUser.words[i].spanish);
+            let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#ED863A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+            usersWords += currentWord;
+          }
+
+          let wordList = "";
+          let beginBoxDisplay = "display:block";
+
+          if (usersWords != "") {
+            wordList = usersWords;
+            beginBoxDisplay = "display:none;";
+          }
+
+          res.render("home", {user: req.user.name, error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: "", duplicateError: "", displayConfirmButton: "display:none;", beginBoxDisplay: beginBoxDisplay, wordList: wordList, wordFormDisplay: "display:none;", currentEmail: req.user.username, changeConfirmBox: "display:block;", confirmMessage: "Incorrect password. Password was not changed. "});
+        } else {
+
+      for (i = 0; i < foundUser.words.length; i++) {
+        const englishVersion = decodeURI(foundUser.words[i].english);
+        const spanishVersion = decodeURI(foundUser.words[i].spanish);
+        let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#ED863A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+        usersWords += currentWord;
+      }
+
+      let wordList = "";
+      let beginBoxDisplay = "display:block";
+
+      if (usersWords != "") {
+        wordList = usersWords;
+        beginBoxDisplay = "display:none;";
+      }
+
+      res.render("home", {user: req.user.name, error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: "", duplicateError: "", displayConfirmButton: "display:none;", beginBoxDisplay: beginBoxDisplay, wordList: wordList, wordFormDisplay: "display:none;", currentEmail: req.user.username, changeConfirmBox: "display:block;", confirmMessage: "Password Changed."});
+    }
+      });
+
+  }
+  });
+});
+
+app.post("/changeEmail", (req,res) => {
+  const newEmail = req.body.newEmail;
+  User.findById(req.user.id, function(err, foundUser){
+    let usersWords = "";
+    if(err){
+      console.log(err);
+    } else {
+      User.updateOne({ _id: foundUser.id }, {
+              "username": newEmail
+        }, (err, result) => {
+          console.log(err);
+        });
+        for (i = 0; i < foundUser.words.length; i++) {
+          const englishVersion = decodeURI(foundUser.words[i].english);
+          const spanishVersion = decodeURI(foundUser.words[i].spanish);
+          let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#ED863A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+          usersWords += currentWord;
+        }
+
+        let wordList = "";
+        let beginBoxDisplay = "display:block";
+
+        if (usersWords != "") {
+          wordList = usersWords;
+          beginBoxDisplay = "display:none;";
+        }
+
+        res.render("home", {user: req.user.name, error: "", wordChoices: "", wordQuery: "", displayChoice: "display:none;", displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: "", duplicateError: "", displayConfirmButton: "display:none;", beginBoxDisplay: beginBoxDisplay, wordList: wordList, wordFormDisplay: "display:none;", currentEmail: newEmail, changeConfirmBox: "display:block;", confirmMessage: "Email Changed."});
+    }
+  });
+  });
+
+
+app.post("/deleteAccount", (req,res) => {
+
+  User.findById(req.user.id, function(err, foundUser){
+    if(err){
+      console.log(err);
+    } else {
+      User.deleteOne({_id: foundUser.id}, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.redirect("/register");
+        }
+    });
+  }
+  });
+
+});
 
 app.post("/logout", (req, res) => {
   req.logout();

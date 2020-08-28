@@ -1,6 +1,6 @@
 <%- include("header") -%>
 
-<div>
+<div id="wordList">
   <form class="removeWord" action="/deleteWord" method="post">
     <input id="engSide" type="hidden" name="englishSide" value="">
     <input id="spanSide" type="hidden" name="spanishSide" value="">
@@ -27,7 +27,7 @@
     </svg>
 </div>
 
-<div id="get-word-form">
+<div id="get-word-form" style=<%= wordFormDisplay %>>
   <div id="small-x">
     <svg height="35px" width="35px" viewbox="0 0 160 160">
       <circle cx="80" cy="80" r="70" fill="#FCC27C" stroke="#84041A" stroke-width="14"/>
@@ -38,7 +38,7 @@
   <form id="chooseWord" action="/get-word" method="post">
     <p class="error"><%= error %></p>
     <p>Choose an English or Spanish word:</p>
-    <input id="wordInput" type="text" name="wordInput">
+    <input id="wordInput" type="text" name="wordInput" autofocus>
     <p>This word is:</p>
     <input type="radio" name="englishOrSpanish" id="english" value="english" required>
     <label for="english">English</label>
@@ -47,7 +47,6 @@
     <button id="get-word-go" type="submit" name="get-word-go">Go</button>
   </form>
 </div>
-
 
 <div class="wordChoices" style=<%= displayChoice %>>
   <div id="small-x-choice">
@@ -81,6 +80,67 @@
     <span class="spanConfirm"><%= original %></span><span>=</span><span class="spanConfirm"><%= translated %></span>
     <button type="submit" class="confirmButton" name="button" style=<%= displayConfirmButton %>>Confirm</button>
   </form>
+</div>
+
+<div class="changeAndDelete">
+    <div id="accordion">
+
+
+      <h3>Change Username</h3>
+      <div><form class="" action="changeUsername" method="post">
+        <p>Your current username: <%= user %></p>
+        <label for="newUsername">Enter your new username:</label>
+        <input type="text" name="newUsername">
+        <button type="submit" name="changeUsername">Change Username</button>
+      </form></div>
+
+      <h3>Change Password</h3>
+      <div><form class="" action="changePassword" method="post">
+        <label for="currentPassword">Enter your current password:</label>
+        <input type="password" name="currentPassword">
+        <label for="newPassword">Enter your new password:</label>
+        <input type="password" name="newPassword">
+        <button type="submit" name="changePassword">Change Password</button>
+      </form></div>
+
+      <h3>Change Email</h3>
+      <div><form class="" action="changeEmail" method="post">
+        <p>Your current email: <%= currentEmail %></p>
+        <label for="newEmail">Enter your new email:</label>
+        <input type="email" name="newEmail">
+        <button type="submit" name="changeEmail">Change Email</button>
+      </form></div>
+
+      <h3>Delete Account</h3>
+      <div><form class="" action="deleteAccount" method="post">
+        <button type="submit" name="deleteAccount">Delete Your Account</button>
+      </form></div>
+
+
+    </div>
+</div>
+
+<div class="changeConfirmBox" style=<%= changeConfirmBox %>>
+  <p><%= confirmMessage %></p>
+  <button type="button" name="button">OK</button>
+</div>
+
+
+<div class="spanEngChanger">
+  <div class="slider">
+    <div class="inner-slider">
+        <div class="inner-circle">
+      </div>
+      <p class="slider-text">english</p>
+    </div>
+  </div>
+
+  <div id="menu-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </div>
 
 <div class="logged-footer">
