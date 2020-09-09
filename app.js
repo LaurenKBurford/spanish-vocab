@@ -23,7 +23,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb://localhost:27017/userDB", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb+srv://lauren_burford:" + process.env.PASSWORD + "@cluster0.jbhrl.mongodb.net/userDB", {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useFindAndModify', false);
 
 const userSchema = new mongoose.Schema ({
@@ -51,7 +51,11 @@ app.get("/", (req, res) => {
 });
 
 app.get("/register", (req, res) => {
-  res.render("register", {registerError: ""});
+  if (req.isAuthenticated()){
+    res.redirect("/home");
+  } else {
+    res.render("register", {registerError: ""});
+  }
 });
 
 app.get("/home", (req, res) => {
@@ -104,7 +108,7 @@ app.post("/register", (req, res) => {
                   });
           }
         });
-        res.redirect("/home");
+        res.render("home", {user: req.body.name, error: "", wordChoices: "", displayChoice: "display:none;", wordQuery: "", displayConfirm: "display:none;", original: "", translated: "", translatedEncoded: "", engOrSpan: "", eOrs: "", duplicateError: "", displayConfirmButton: "display:none;", beginBoxDisplay: "display:block", wordList: "", wordFormDisplay: "display:none;", currentEmail: req.user.username, changeConfirmBox: "display:none;", confirmMessage: ""});
       });
     }
   });
@@ -495,7 +499,9 @@ app.post("/deleteWord", (req, res) => {
                   }
                 }
               }, (err, result) => {
-                console.log(err);
+                if (err) {
+                  console.log(err);
+                }
               });
               deleteComplete = true;
               res.redirect("/home");

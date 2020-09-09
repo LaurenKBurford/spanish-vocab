@@ -3,7 +3,11 @@ body {
   width: 76vw;
   position: absolute;
   right: 0;
-  overflow: hidden;
+  overflow-x: hidden;
+}
+
+#wordList {
+    margin-bottom: 5rem;
 }
 
 /* Homepage Styles */
@@ -13,7 +17,7 @@ body {
   background-color: #EDD0AE;
   border: 3px solid #ED863A;
   width: 24rem;
-  margin: 6rem auto;
+  margin: 6rem auto 7rem;
   text-align: center;
   padding: 3rem;
 }
@@ -37,6 +41,7 @@ body {
   width: 22vw;
   height: auto;
   padding: 1.5rem;
+  z-index: 3;
 }
 
 .logged-out-footer {
@@ -49,6 +54,7 @@ body {
   height: auto;
   padding: 1.5rem;
   padding-top: 2rem;
+  z-index: 4;
 }
 
 .footers {
@@ -104,6 +110,7 @@ button.footers.log-out:hover {
   position: fixed;
   left: 1.5rem;
   top: 18rem;
+  z-index: 2;
 }
 
 #big-plus:hover {
@@ -243,6 +250,7 @@ input[type="text"] {
   font-size: 26px;
   font-weight: 600;
   margin: 0 10px;
+  display: inline-block;
 }
 
 /* Login/Register Styles */
@@ -257,6 +265,7 @@ input[type="text"] {
   height: 100vh;
   width: 22vw;
   padding: 1rem 1.5rem;
+  z-index: 1;
 }
 
 .title {
@@ -585,14 +594,15 @@ input[type="text"] {
     color: #330410;
     position: absolute;
     right: -550px;
-    top: -25px;
+    top: 0;
     width: 35vw;
     height: auto;
     transition: right 500ms ease-in-out;
+    margin-bottom: 5rem;
 }
 
 .slide {
-  right: -25px;
+  right: -25px !important;
 }
 
 #accordion h3 {
@@ -699,4 +709,393 @@ input[type="text"] {
   font-size: 19px;
   font-family: 'Niramit', sans-serif;
   ont-weight: 600;
+}
+
+/* Media Queries */
+
+@media screen and (min-width: 2101px) and (max-width: 2700px) {
+  .changeAndDelete {
+    right: -875px;
+  }
+}
+
+@media screen and (min-width: 1545px) and (max-width: 2100px) {
+  .changeAndDelete {
+    right: -750px;
+  }
+}
+
+@media screen and (max-width: 1260px) {
+  .title {
+    font-size: 55px;
+    line-height: 65px;
+  }
+  #big-plus {
+    top: 15rem;
+  }
+}
+
+@media screen and (max-width: 1188px) {
+  #get-word-form,
+  .wordChoices,
+  .confirmWord {
+    left: 10rem;
+  }
+}
+
+@media screen and (max-width: 1090px) {
+  .title {
+    font-size: 38px;
+    line-height: 43px;
+    width: 14rem;
+  }
+  #big-plus {
+    top: 13rem;
+  }
+  #big-plus-svg {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+@media screen and (max-width: 1040px) {
+  .changeAndDelete {
+    width: 45vw;
+  }
+}
+
+@media screen and (max-width: 1030px) {
+  #get-word-form,
+  .wordChoices,
+  .confirmWord {
+    left: 8rem;
+  }
+}
+
+@media screen and (max-width: 930px) {
+  .sidebar {
+    height: 10rem;
+    width: 100vw;
+  }
+  .title {
+    width: 14rem;
+  }
+  #big-plus {
+    top: 2rem;
+    left: 29rem;
+  }
+  .spanEngChanger {
+    width: 100vw;
+  }
+  body {
+    width: 100vw;
+    right: unset;
+    top: 10rem;
+  }
+  .logged-footer {
+    top: 0;
+    right: 0;
+    left: unset;
+    width: auto;
+    max-width: 20rem;
+    height: 10rem;
+  }
+  .changeAndDelete {
+    top: 0;
+    width: 55vw;
+  }
+  .logged-out-footer {
+    width: 100vw;
+  }
+  .begin-box {
+    margin: 3rem auto 7rem;
+  }
+  #get-word-form,
+  .wordChoices,
+  .confirmWord {
+    left: 15rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #big-plus {
+      left: 24rem;
+  }
+  #get-word-form,
+  .wordChoices,
+  .confirmWord {
+    left: 11rem;
+  }
+}
+
+@media screen and (max-width: 830px) {
+  #get-word-form,
+  .wordChoices,
+  .confirmWord {
+    left: 9rem;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .sidebar {
+    height: 10.5rem;
+  }
+  body {
+    top: 10.5rem;
+  }
+  .logged-footer {
+    height: 10.5rem;
+  }
+  #big-plus {
+    top: 2rem;
+    left: 23rem;
+  }
+  .changeAndDelete {
+    width: 75vw;
+    right: -650px;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  #big-plus {
+    left: 17rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #get-word-form,
+  .wordChoices,
+  .confirmWord {
+    left: 8rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #get-word-form,
+  .wordChoices,
+  .confirmWord {
+    left: 7rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .title {
+    font-size: 45px;
+    line-height: 47px;
+    width: 16rem;
+  }
+    #big-plus-svg {
+      width: 70px;
+      height: 70px;
+    }
+    .sidebar {
+    height: 11rem;
+    padding: 1rem 1rem;
+  }
+  .logged-footer {
+    height: 11rem;
+  }
+  body {
+    top: 11rem;
+  }
+  .logged-footer {
+    max-width: 16rem;
+  }
+  .footers {
+    font-size: 19px;
+    line-height: 22px;
+  }
+  #get-word-form,
+  .wordChoices,
+  .confirmWord {
+    left: 5rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  #get-word-form,
+  .wordChoices,
+  .confirmWord {
+    left: 3rem;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .logged-footer {
+    max-width: none;
+    width: 100vw;
+    padding: .75rem;
+    height: fit-content;
+  }
+  .logged-status {
+    float: left;
+  }
+  button.footers.log-out {
+    float: right;
+  }
+  .footers {
+    font-size: 18px;
+    line-height: 23px;
+  }
+  .sidebar {
+    height: 11rem;
+    margin-top: 3.25rem;
+    height: 7.5rem;
+  }
+  #big-plus-svg {
+    width: 80px;
+    height: 80px;
+  }
+  #big-plus {
+    top: 4.75rem;
+    right: 1rem;
+    left: unset;
+  }
+  body {
+    top: 11rem;
+  }
+  .changeAndDelete {
+    width: 90vw;
+  }
+  .title {
+    font-size: 25px;
+    line-height: 30px;
+    width: 9rem;
+  }
+  .logged-out-footer {
+    top: 0;
+    bottom: unset;
+    padding: 1rem;
+    padding-top: 1rem;
+  }
+  .logged-out-status {
+    float: left;
+  }
+  .log-in {
+    float: right;
+  }
+  .login-box {
+    margin: 1rem auto;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #get-word-form,
+  .wordChoices,
+  .confirmWord {
+    width: 22rem;
+    font-size: 21px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  #get-word-form,
+  .wordChoices,
+  .confirmWord {
+    width: 20rem;
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  #get-word-form,
+  .wordChoices,
+  .confirmWord {
+    width: 19rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .changeAndDelete {
+    width: 95vw;
+  }
+  .wordset {
+    font-size: 18px;
+    margin: 7px;
+  }
+  .login-box {
+    width: 21rem;
+  }
+  .login-form {
+    margin: 2rem 1rem;
+  }
+  .begin-box {
+    width: 20rem;
+    padding: 2rem;
+  }
+  .begin-title {
+    font-size: 28px;
+    line-height: 37px;
+  }
+  #get-started {
+    font-size: 23px;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  #get-word-form,
+  .wordChoices,
+  .confirmWord {
+    left: 2rem;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  #get-word-form,
+  .wordChoices,
+  .confirmWord {
+    width: 18rem;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  #get-word-form,
+  .wordChoices,
+  .confirmWord {
+    left: 1rem;
+  }
+  input[type="text"] {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  #get-word-form,
+  .wordChoices,
+  .confirmWord {
+    width: 17rem;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  #get-word-form,
+  .wordChoices,
+  .confirmWord {
+    width: 17rem;
+    padding: 2rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .login-box {
+    width: 90vw;
+  }
+  .begin-box {
+    width: 18rem;
+  }
+  #get-word-form,
+  .wordChoices,
+  .confirmWord {
+    width: 16rem;
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  #get-word-form,
+  .wordChoices,
+  .confirmWord {
+    font-size: 18px;
+    width: 14rem;
+  }
 }
