@@ -8,6 +8,7 @@ body {
 
 #wordList {
     margin-bottom: 5rem;
+    margin-right: 1rem;
 }
 
 /* Homepage Styles */
@@ -509,7 +510,7 @@ input[type="text"] {
   font-family: "Niramit", sans-serif;
   font-size: 20px;
   position: relative;
-  top: -58px;
+  top: -60px;
   left: 44px;
 }
 
@@ -935,7 +936,9 @@ input[type="text"] {
   }
   .logged-status {
     float: left;
-    margin-left: 1rem;
+    max-width: 11rem;
+    margin-bottom: 0;
+    margin-left: .5rem;
   }
   button.footers.log-out {
     float: right;
@@ -946,7 +949,7 @@ input[type="text"] {
   }
   .sidebar {
     height: 11rem;
-    margin-top: 3.25rem;
+    margin-top: 3.5rem;
     height: 7.5rem;
   }
   #big-plus-svg {
