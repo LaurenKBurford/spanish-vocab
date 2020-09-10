@@ -725,6 +725,12 @@ input[type="text"] {
   }
 }
 
+@media screen and  (min-width: 930px) and (max-width: 1305px) {
+  #wordList {
+    margin-left: 1rem;
+  }
+}
+
 @media screen and (max-width: 1260px) {
   .title {
     font-size: 55px;
@@ -929,6 +935,7 @@ input[type="text"] {
   }
   .logged-status {
     float: left;
+    margin-left: 1rem;
   }
   button.footers.log-out {
     float: right;
