@@ -949,8 +949,7 @@ input[type="text"] {
   }
   .sidebar {
     height: 11rem;
-    margin-top: 3.5rem;
-    height: 7.5rem;
+    height: 3.5rem;
   }
   #big-plus-svg {
     width: 80px;
@@ -962,7 +961,7 @@ input[type="text"] {
     left: unset;
   }
   body {
-    top: 11rem;
+    top: 4rem;
   }
   .changeAndDelete {
     width: 90vw;
@@ -970,7 +969,7 @@ input[type="text"] {
   .title {
     font-size: 25px;
     line-height: 30px;
-    width: 9rem;
+    width: 20rem;
   }
   .logged-out-footer {
     top: 0;
@@ -986,6 +985,25 @@ input[type="text"] {
   }
   .login-box {
     margin: 1rem auto;
+  }
+  .login-title {
+        font-size: 25px;
+  }
+  #big-plus-svg {
+    width: 65px;
+    height: 65px;
+  }
+  #big-plus {
+    top: 4rem;
+  }
+  #get-word-form,
+  .wordChoices,
+  .confirmWord {
+    top: 0rem;
+  }
+  #get-word-go {
+    margin: 1rem auto 0;
+    font-size: 27px;
   }
 }
 
