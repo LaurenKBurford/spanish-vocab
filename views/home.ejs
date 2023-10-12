@@ -12,27 +12,27 @@
   <h3 class="begin-title">You don't have any words yet!</h3>
     <div id="get-started" type="submit" name="get-word-button">
       <svg height="35px" width="35px" viewbox="0 0 160 160">
-    <circle cx="80" cy="80" r="70" fill="#ED863A" stroke="#84041A" stroke-width="14"/>
-  <line x1="80" y1="45" x2="80" y2="115" stroke="#84041A" stroke-width="14" stroke-linecap="round"/>
-  <line x1="45" y1="80" x2="115" y2="80" stroke="#84041A" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="80" cy="80" r="70" fill="#f2efe9" stroke="#3D5556" stroke-width="14"/>
+  <line x1="80" y1="45" x2="80" y2="115" stroke="#3D5556" stroke-width="14" stroke-linecap="round"/>
+  <line x1="45" y1="80" x2="115" y2="80" stroke="#3D5556" stroke-width="14" stroke-linecap="round"/>
 </svg>
       <span id="started">GET STARTED</span></div>
 </div>
 
 <div id="big-plus">
     <svg id="big-plus-svg" height="110px" width="110px" viewbox="0 0 160 160">
-        <circle cx="80" cy="80" r="70" fill="#ED863A" stroke="#EDD0AE" stroke-width="14"/>
-      <line x1="80" y1="45" x2="80" y2="115" stroke="#EDD0AE" stroke-width="14" stroke-linecap="round"/>
-      <line x1="45" y1="80" x2="115" y2="80" stroke="#EDD0AE" stroke-width="14" stroke-linecap="round"/>
+        <circle cx="80" cy="80" r="70" fill="#f2efe9" stroke="#3D5556" stroke-width="14"/>
+      <line x1="80" y1="45" x2="80" y2="115" stroke="#3D5556" stroke-width="14" stroke-linecap="round"/>
+      <line x1="45" y1="80" x2="115" y2="80" stroke="#3D5556" stroke-width="14" stroke-linecap="round"/>
     </svg>
 </div>
 
 <div id="get-word-form" style=<%= wordFormDisplay %>>
   <div id="small-x">
     <svg height="35px" width="35px" viewbox="0 0 160 160">
-      <circle cx="80" cy="80" r="70" fill="#FCC27C" stroke="#84041A" stroke-width="14"/>
-      <line x1="50" y1="45" x2="110" y2="115" stroke="#84041A" stroke-width="15" stroke-linecap="round"/>
-      <line x1="50" y1="115" x2="110" y2="45" stroke="#84041A" stroke-width="15" stroke-linecap="round"/>
+      <circle cx="80" cy="80" r="70" fill="#faead7" stroke="#2B3E3C" stroke-width="14"/>
+      <line x1="50" y1="45" x2="110" y2="115" stroke="#2B3E3C" stroke-width="15" stroke-linecap="round"/>
+      <line x1="50" y1="115" x2="110" y2="45" stroke="#2B3E3C" stroke-width="15" stroke-linecap="round"/>
     </svg>
   </div>
   <form id="chooseWord" action="/get-word" method="post">
@@ -40,10 +40,10 @@
     <p>Choose an English or Spanish word:</p>
     <input id="wordInput" type="text" name="wordInput" autofocus>
     <p>This word is:</p>
-    <input type="radio" name="englishOrSpanish" id="english" value="english" required>
-    <label for="english">English</label>
-    <input type="radio" name="englishOrSpanish" id="spanish" value="spanish">
-    <label for="spanish">Spanish</label>
+    <div class="english-option"><input type="radio" name="englishOrSpanish" id="english" value="english" required>
+    <label for="english">English</label></div>
+    <div class="spanish-option"><input type="radio" name="englishOrSpanish" id="spanish" value="spanish">
+    <label for="spanish">Spanish</label></div>
     <button id="get-word-go" type="submit" name="get-word-go">Go</button>
   </form>
 </div>
@@ -51,9 +51,9 @@
 <div class="wordChoices" style=<%= displayChoice %>>
   <div id="small-x-choice">
     <svg height="35px" width="35px" viewbox="0 0 160 160">
-      <circle cx="80" cy="80" r="70" fill="#FCC27C" stroke="#84041A" stroke-width="14"/>
-      <line x1="50" y1="45" x2="110" y2="115" stroke="#84041A" stroke-width="15" stroke-linecap="round"/>
-      <line x1="50" y1="115" x2="110" y2="45" stroke="#84041A" stroke-width="15" stroke-linecap="round"/>
+      <circle cx="80" cy="80" r="70" fill="#faead7" stroke="#2B3E3C" stroke-width="14"/>
+      <line x1="50" y1="45" x2="110" y2="115" stroke="#2B3E3C" stroke-width="15" stroke-linecap="round"/>
+      <line x1="50" y1="115" x2="110" y2="45" stroke="#2B3E3C" stroke-width="15" stroke-linecap="round"/>
     </svg>
   </div>
   <p>Choose your translation:</p>
@@ -67,9 +67,9 @@
 <div class="confirmWord" style=<%= displayConfirm %>>
   <div id="small-x-confirm">
     <svg height="35px" width="35px" viewbox="0 0 160 160">
-      <circle cx="80" cy="80" r="70" fill="#FCC27C" stroke="#84041A" stroke-width="14"/>
-      <line x1="50" y1="45" x2="110" y2="115" stroke="#84041A" stroke-width="15" stroke-linecap="round"/>
-      <line x1="50" y1="115" x2="110" y2="45" stroke="#84041A" stroke-width="15" stroke-linecap="round"/>
+      <circle cx="80" cy="80" r="70" fill="#faead7" stroke="#2B3E3C" stroke-width="14"/>
+      <line x1="50" y1="45" x2="110" y2="115" stroke="#2B3E3C" stroke-width="15" stroke-linecap="round"/>
+      <line x1="50" y1="115" x2="110" y2="45" stroke="#2B3E3C" stroke-width="15" stroke-linecap="round"/>
     </svg>
   </div>
   <form action="confirm-word" method="post">

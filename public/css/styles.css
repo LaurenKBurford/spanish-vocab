@@ -1,5 +1,6 @@
+
 body {
-  background-color: #FCC27C;
+  background-color: #a2baba;
   width: 76vw;
   position: absolute;
   right: 0;
@@ -7,7 +8,7 @@ body {
 }
 
 #wordList {
-    margin-bottom: 5rem;
+    margin-bottom: 15rem;
     margin-right: 1rem;
 }
 
@@ -15,8 +16,8 @@ body {
 
 .begin-box {
   box-sizing: border-box;
-  background-color: #EDD0AE;
-  border: 3px solid #ED863A;
+  background-color: #f2efe9;
+  border: 3px solid #3D5556;
   width: 24rem;
   margin: 6rem auto 7rem;
   text-align: center;
@@ -24,18 +25,18 @@ body {
 }
 
 .begin-title {
-  color: #84041A;
-  font-family: 'Niramit', sans-serif;
-  font-weight: 600;
-  font-size: 30px;
-  line-height: 60px;
+  color: #3D5556;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+    font-size: 28px;
+    line-height: 37px;
   padding: 0 1rem;
   margin: 0 0 2rem 0;
 }
 
 .logged-footer {
   box-sizing: border-box;
-  background-color: #8C092B;
+  background-color: #3D5556;
   position: fixed;
   left: 0;
   bottom: 0;
@@ -47,7 +48,7 @@ body {
 
 .logged-out-footer {
   box-sizing: border-box;
-  background-color: #8C092B;
+  background-color: #3D5556;
   position: fixed;
   left: 0;
   bottom: 0;
@@ -62,49 +63,64 @@ body {
   display: block;
   font-size: 21px;
   line-height: 23px;
-  font-family: 'Niramit', sans-serif;
-  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
 }
 
 .logged-status {
-  color: #EDD0AE;
+  color: #f2efe9;
   margin-bottom: 15px;
+  font-weight: 300;
 }
 
 button.footers.log-out {
     background-color: transparent;
     border: none;
-    color: #FCC27C;
+    color: #faead7;
     position: relative;
     left: -7px;
 }
 
+button.footers.log-out::after,
+.log-in::after {
+  content: '';
+  display: block;
+  position: relative;
+  height: 2px;
+  width: 100%;
+  top:3px;
+  background-color: #778787;
+}
+
 button.footers.log-out:hover {
-    color: #E07127;
+    color: #778787;
     cursor: pointer;
 }
 
 .log-out:link {
-  color: #F9BA67;
+  color: #EED8AE;
   text-decoration: none;
 }
 
 .log-out:hover {
-  color: #ED863A;
+  color: #3D5556;
 }
 
 .logged-out-status {
-  color: #EDD0AE;
+  color: #f2efe9;
   margin-bottom: 5px;
 }
 
 .log-in {
-  color: #F9BA67;
+  display: inline-block;
+  position: relative;
+  top: 5px;
+  color: #faead7;
   text-decoration: none;
 }
 
 .log-in:hover {
-  color: #ED863A;
+  color: #778787;
+  cursor: pointer;
 }
 
 #big-plus {
@@ -119,23 +135,25 @@ button.footers.log-out:hover {
 }
 
 #get-started {
-  background-color: #FCC27C;
-  color: #8C092B;
+  background-color: #E9E6E1;
+  color: #3D5556;
   font-weight: 600;
-  border: 3px solid #8C092B;
+  border: 2px solid #3D5556;
   font-size: 25px;
-  font-family: 'Niramit', sans-serif;
-  padding: 10px;
+  font-family: 'Roboto', sans-serif;
+  padding: 13px 5px 10px;
   transition: background-color .5s ease-in-out;
+  border-radius: 5px;
 }
 
 #get-started:hover {
-  background-color: #fad09d;
+  background-color: #BCC5C2;
 }
 
 #started {
     position: relative;
-    bottom: 7px;
+    bottom: 8px;
+    margin-left: 1rem;
 }
 
 #get-started:hover {
@@ -154,52 +172,54 @@ button.footers.log-out:hover {
   position: absolute;
   z-index: 100;
   top: 4rem;
+  right: 15rem;
   left: 15rem;
-  background-color: #ED863A;
-  border: 3px solid #8C092B;
-  width: 24rem;
+  background-color: #E7DFD2;
+  border: 3px solid #3D5556;
+  width: fit-content;
   text-align: center;
   padding: 3rem;
   font-size: 23px;
-  color: #330410;
-  font-family: 'Niramit', sans-serif;
+  color: #2B3E3C;
+  font-family: 'Roboto', sans-serif;
   display: none;
   margin-bottom: 10rem;
 }
 
 input[type="text"] {
-    border-radius: 0;
-    border: 1px solid #8C092B;
+    border-radius: 4px;
+    border: 1px solid #3D5556;
     width: 17rem;
     height: 2rem;
     font-size: 23px;
-    color: #330410;
-    font-family: 'Niramit', sans-serif;
+    color: #2B3E3C;
+    font-family: 'Roboto', sans-serif;
     padding: 5px;
   }
 
   .error {
     font-weight: 700;
-    color: #8C092B;
+    color: #3D5556;
   }
 
   #get-word-go {
     display: block;
-    background-color: #330410;
+    background-color: #2B3E3C;
     border: none;
     margin: 3rem auto 0;
-    font-family: 'Niramit', sans-serif;
-    color: #FCC27C;
+    font-family: 'Roboto', sans-serif;
+    color: #faead7;
     font-size: 30px;
     width: 5rem;
     height: 3rem;
-    font-weight: 600;
-    padding-bottom: 10px;
+    font-weight: 400;
+    padding-bottom: 3px;
     transition: background-color .2s ease-in-out;
+    border-radius: 5px;
   }
 
   #get-word-go:hover {
-    background-color: #8C092B;
+    background-color: #3D5556;
     cursor: pointer;
   }
 
@@ -221,14 +241,15 @@ input[type="text"] {
 
 .transWord,
 .confirmButton {
-  border: 1px solid #8C092B;
-  background-color: #EDD0AE;
+  border: 1px solid #3D5556;
+  background-color: #f2efe9;
   border-radius: 0;
   font-weight: 500;
   font-size: 23px;
-  font-family: 'Niramit', sans-serif;
-  color: #330410;
-  padding: 7px 15px 12px;
+  font-family: 'Roboto', sans-serif;
+  color: #2B3E3C;
+  padding: 10px 15px 12px;
+    border-radius: 5px;
 }
 
 .transWord {
@@ -243,8 +264,8 @@ input[type="text"] {
 .transWord:hover,
 .confirmButton:hover {
   cursor: pointer;
-  background-color: #8C092B;
-  color: #EDD0AE;
+  background-color: #3D5556;
+  color: #f2efe9;
 }
 
 .spanConfirm {
@@ -258,8 +279,8 @@ input[type="text"] {
 
 .sidebar {
   box-sizing:border-box;
-  color: #EDD0AE;
-  background-color: #E07127;
+  color: #2B3E3C;
+  background-color: #e3e1d8;
   position: fixed;
   left: 0;
   top: 0;
@@ -267,45 +288,46 @@ input[type="text"] {
   width: 22vw;
   padding: 1rem 1.5rem;
   z-index: 1;
+  border-right: 10px solid white;
 }
 
 .title {
-  font-family: 'Amaranth', sans-serif;
+  font-family: 'Calistoga', cursive;
   font-size: 65px;
   margin: 0;
   line-height: 75px;
 }
 
 .login-box {
-  background-color: #EDD0AE;
-  border: 3px solid #ED863A;
+  background-color: #f2efe9;
+  border: 2px solid #3D5556;
   width: 24rem;
-  margin: 3rem auto;
+  margin: 10rem auto;
   text-align: center;
   padding-bottom: 2rem;
 }
 
 #register-form {
-  border-color: #84041A;
+  border-color: #3D5556;
 }
 
 .login-title {
-  color: #EDD0AE;
-  background-color: #ED863A;
+  color: #f2efe9;
+  background-color: #3D5556;
   margin: 0;
   text-align: center;
-  font-family: 'Niramit', sans-serif;
-  font-weight: 600;
-  font-size: 35px;
-  padding-bottom: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 30px;
+  padding: 10px;
 }
 
 #register-title {
-  background-color: #84041A;
+  background-color: #3D5556;
 }
 
 .login-form {
-  margin: 2rem 3rem;
+  margin: 2rem 3rem 0;
 }
 
 .form-input,
@@ -315,14 +337,15 @@ input[type="text"] {
   margin-bottom: 2rem;
   width: 100% !important;
   height: 2.5rem !important;
+  border-radius: 4px;
 }
 
 #username-email,
 #password,
 #name,
 #email {
-  background-color: #EDD0AE;
-  border: 2px solid #84041A;
+  background-color: #f2efe9;
+  border: 2px solid #3D5556;
   padding: 0 10px;
   font-size: 21px;
 }
@@ -339,7 +362,7 @@ input[type="text"] {
 #password::placeholder,
 #name::placeholder,
 #email::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #84041A;
+  color: #3D5556;
   opacity: .7; /* Firefox */
 }
 
@@ -347,7 +370,7 @@ input[type="text"] {
 #password:-ms-input-placeholder,
 #name::placeholder,
 #email::placeholder { /* Internet Explorer 10-11 */
-  color: #84041A;
+  color: #3D5556;
   opacity: .7;
 }
 
@@ -355,62 +378,69 @@ input[type="text"] {
 #password::-ms-input-placeholder,
 #name::placeholder,
 #email::placeholder { /* Microsoft Edge */
-  color: #84041A;
+  color: #3D5556;
   opacity: .7;
 }
 
 #login-button {
-  border-radius: 0;
   border: none;
-  color: #EDD0AE;
-  background-color: #84041A;
+  color: #f2efe9;
+  background-color: #3D5556;
   font-size: 23px;
+  margin-bottom: 10px;
 }
 
 #register-button {
-  border-radius: 0;
+  border-radius: 4px;
   border: none;
-  color: #EDD0AE;
-  background-color: #ED863A;
+  color: #f2efe9;
+  background-color: #3D5556;
   font-size: 23px;
+  margin-bottom: 10px;
 }
 
 #login-button:hover {
   cursor: pointer;
-  background-color: #ED863A;
+  background-color: #3D5556;
 }
 
 #register-button:hover {
   cursor: pointer;
-  background-color: #84041A;
+  background-color: #3D5556;
 }
 
 .options {
   text-decoration: none;
   display: block;
-  font-family: "Niramit", sans-serif;
-  font-weight: 600;
-  font-size: 25px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 21px;
+  margin: 16px;
 }
 
 .or {
-  font-family: "Niramit", sans-serif;
-  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
   font-size: 23px;
-  color: #84041A;
+  color: #3D5556;
   margin: 0;
+  margin-bottom: 5px;
 }
 
 .register {
-  color: #C66336;
+  color: #778787;
 }
 
 .register:hover {
-  color: #84041A;
+  color: #3D5556;
 }
 
 .already {
-  color: #84041A;
+  color: #3D5556;
+}
+
+svg#big-plus-svg:hover {
+  opacity: 0.7;
 }
 
 /* Word Boxes */
@@ -420,16 +450,16 @@ input[type="text"] {
 }
 
 .wordset {
-  border: 1px solid #84041A;
+  border: 2px solid #3D5556;
   margin: 10px;
   position: relative;
   display: inline-flex;
-  padding: 4px 12px 9px;
-  font-family: "Niramit", sans-serif;
+  padding: 6px 12px 8px;
+  font-family: 'Roboto', sans-serif;
   font-size: 22px;
   font-weight: 500;
-  color: #84041A;
-  background-color: #EDD0AE;
+  color: #3D5556;
+  background-color: #f2efe9;
   transition: transform 350ms ease-in-out;
 }
 
@@ -439,9 +469,9 @@ input[type="text"] {
 
 .smallXdelete {
   position: absolute;
-  top: -14px;
-  right: -12px;
-  opacity: .8;
+  top: -11px;
+  right: -11px;
+  opacity: .7;
   z-index: 100;
 }
 
@@ -458,6 +488,18 @@ input[type="text"] {
     transform: rotateY(360deg);
   }
 
+  input[type="radio"] {
+    height: 1.5rem;
+    width: 1.5rem;
+    position: relative;
+    top: 4px;
+    margin-left: 1rem;
+}
+
+.english-option, .spanish-option {
+  display: inline;
+}
+
   /* Bottom Spanish-English Bar */
 
   .spanEngChanger {
@@ -466,13 +508,13 @@ input[type="text"] {
     position: fixed;
     right: 0;
     bottom: 0;
-    background-color: rgba(132,4,26,0.8);
+    background-color: #2B3E3C;
   }
 
   .slider {
   width: 169px;
   height: 38px;
-  background-color: #FCC27C;
+  background-color: #faead7;
   margin: 9px auto;
   border-radius: 25px;
 }
@@ -480,8 +522,8 @@ input[type="text"] {
   margin: auto;
   width: 150px;
   height: 24px;
-  background-color: #EDD0AE;
-  border: 2px solid #84041A;
+  background-color: #e6edea;
+  border: 2px solid #3D5556;
   border-radius: 25px;
   position: relative;
   top: 5px;
@@ -492,8 +534,8 @@ input[type="text"] {
   position: relative;
   top: -5px;
   left: -4px;
-  background-color: #84041A;
-  border: 2px solid #EDD0AE;
+  background-color: #3D5556;
+  border: 2px solid #f2efe9;
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -506,11 +548,11 @@ input[type="text"] {
 }
 
 .slider-text {
-  color: #84041A;
-  font-family: "Niramit", sans-serif;
+  color: #3D5556;
+  font-family: 'Roboto', sans-serif;
   font-size: 20px;
   position: relative;
-  top: -60px;
+  top: -55px;
   left: 44px;
 }
 
@@ -534,7 +576,7 @@ input[type="text"] {
   position: absolute;
   height: 5px;
   width: 100%;
-  background: #EDD0AE;
+  background: #f2efe9;
   border-radius: 20px;
   opacity: 1;
   left: 0;
@@ -586,13 +628,13 @@ input[type="text"] {
 
 .changeAndDelete {
     box-sizing: border-box;
-    background-color: #EDD0AE;
-    border: 10px solid #330410;
+    background-color: #f2efe9;
+    border: 10px solid #2B3E3C;
     padding: 1rem 3rem 2rem 1rem;
     font-size: 23px;
     font-weight: 200;
-    font-family: 'Niramit', sans-serif;
-    color: #330410;
+    font-family: 'Roboto', sans-serif;
+    color: #2B3E3C;
     position: absolute;
     right: -550px;
     top: 0;
@@ -611,23 +653,19 @@ input[type="text"] {
     font-weight: 100;
     font-size: 20px;
     padding: 10px;
-    border: 1px solid #330410;
+    border: 1px solid #2B3E3C;
     cursor: pointer;
     transition: border 200ms ease-in-out;
 }
 
 #accordion h3:hover {
-  border: 3px solid #84041A;
+  border: 3px solid #3D5556;
   font-weight: 500;
 }
 
-#accordion h3:focus {
-  outline: 3px solid #C66336;
-}
-
 #accordion div {
-    background-color: #f5a845;
-    color: #330410;
+    background-color: #BCC5C2;
+    color: #2B3E3C;
     padding: 1rem;
     font-size: 19px;
     font-weight: 500;
@@ -636,7 +674,7 @@ input[type="text"] {
 #accordion input {
   height: 1rem;
   padding: 5px;
-  color: #330410;
+  color: #2B3E3C;
   font-size: 19px;
   margin: 10px 0;
   display: block;
@@ -645,19 +683,19 @@ input[type="text"] {
 }
 
 #accordion button {
-  background-color: #330410;
+  background-color: #2B3E3C;
   border: none;
   margin: 1rem auto 0;
-  font-family: 'Niramit', sans-serif;
-  color: #FCC27C;
-  font-size: 20px;
-  height: 2rem;
-  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  color: #faead7;
+  font-size: 18px;
+  padding: 9px 20px;
+  font-weight: 300;
   transition: background-color .2s ease-in-out;
 }
 
 #accordion button:hover {
-  background-color: #8C092B;
+  background-color: #3D5556;
   cursor: pointer;
 }
 
@@ -672,44 +710,44 @@ input[type="text"] {
   z-index: 100;
   top: 4rem;
   left: 15rem;
-  background-color: #ED863A;
-  border: 3px solid #8C092B;
-  width: 24rem;
+  background-color: #f2efe9;
+  border: 3px solid #3D5556;
+  width: fit-content;
   text-align: center;
   padding: 3rem;
   font-size: 23px;
-  color: #330410;
-  font-family: 'Niramit', sans-serif;
+  color: #2B3E3C;
+  font-family: 'Roboto', sans-serif;
   display: none;
 }
 
 .changeConfirmBox button {
   display: block;
-  background-color: #330410;
+  background-color: #2B3E3C;
   border: none;
   margin: 3rem auto 0;
-  font-family: 'Niramit', sans-serif;
-  color: #FCC27C;
+  font-family: 'Roboto', sans-serif;
+  color: #faead7;
   font-size: 25px;
   width: 5rem;
   height: 2.5rem;
-  font-weight: 600;
-  padding-bottom: 10px;
+  font-weight: 400;
+  border-radius: 4px;
   transition: background-color .2s ease-in-out;
 }
 
 .changeConfirmBox button:hover {
-  background-color: #8C092B;
+  background-color: #3D5556;
   cursor: pointer;
 }
 
 /* Register Error */
 
 .registerError {
-  color: #8C092B;
+  color: #3D5556;
   font-size: 19px;
-  font-family: 'Niramit', sans-serif;
-  ont-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
 }
 
 /* Media Queries */
@@ -732,6 +770,16 @@ input[type="text"] {
   }
 }
 
+@media screen and (max-width: 1350px) {
+  .title {
+    font-size: 60px;
+  }
+  svg#big-plus-svg {
+    height: 90px;
+    width: 90px;
+  }
+}
+
 @media screen and (max-width: 1260px) {
   .title {
     font-size: 55px;
@@ -740,6 +788,15 @@ input[type="text"] {
   #big-plus {
     top: 15rem;
   }
+  .changeConfirmBox {
+    padding: 2.5rem;
+    font-size: 20px;
+    left: 10rem;
+  }
+  .changeConfirmBox button {
+    font-size: 22px;
+    width: 4.5rem;
+  }
 }
 
 @media screen and (max-width: 1188px) {
@@ -747,14 +804,18 @@ input[type="text"] {
   .wordChoices,
   .confirmWord {
     left: 10rem;
+    right: 10rem;
+  }
+  .sidebar,
+  .logged-footer {
+    width: 24vw;
   }
 }
 
 @media screen and (max-width: 1090px) {
   .title {
-    font-size: 38px;
-    line-height: 43px;
-    width: 14rem;
+    font-size: 45px;
+    line-height: 53px;
   }
   #big-plus {
     top: 13rem;
@@ -776,6 +837,18 @@ input[type="text"] {
   .wordChoices,
   .confirmWord {
     left: 8rem;
+    right: 8rem;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .wordset {
+    margin: 6px;
+    font-size: 20px;
+  }
+  svg#big-plus-svg {
+    height: 70px;
+    width: 70px;
   }
 }
 
@@ -783,13 +856,16 @@ input[type="text"] {
   .sidebar {
     height: 10rem;
     width: 100vw;
+    border-bottom: 5px solid white;
   }
   .title {
+    font-size: 39px;
+    line-height: 41px;
     width: 14rem;
   }
   #big-plus {
-    top: 2rem;
-    left: 29rem;
+    top: 2.5rem;
+    left: 14rem;
   }
   .spanEngChanger {
     width: 100vw;
@@ -817,21 +893,23 @@ input[type="text"] {
   .begin-box {
     margin: 3rem auto 7rem;
   }
-  #get-word-form,
-  .wordChoices,
-  .confirmWord {
-    left: 15rem;
+  .changeConfirmBox {
+    top: 2rem;
+    left: unset;
+    right: 5rem;
+    font-size: 19px;
   }
-}
+  .transWord {
+    font-size: 20px;
+  }
 
-@media screen and (max-width: 900px) {
-  #big-plus {
-      left: 24rem;
-  }
-  #get-word-form,
-  .wordChoices,
-  .confirmWord {
-    left: 11rem;
+user agent stylesheet
+form {
+    display: block;
+    margin-top: 0em;
+}
+#get-word-form, .wordChoices, .confirmWord {
+    font-size: 20px;
   }
 }
 
@@ -840,6 +918,7 @@ input[type="text"] {
   .wordChoices,
   .confirmWord {
     left: 9rem;
+    right: 9rem;
   }
 }
 
@@ -853,19 +932,9 @@ input[type="text"] {
   .logged-footer {
     height: 10.5rem;
   }
-  #big-plus {
-    top: 2rem;
-    left: 23rem;
-  }
   .changeAndDelete {
     width: 75vw;
     right: -650px;
-  }
-}
-
-@media screen and (max-width: 810px) {
-  #big-plus {
-    left: 17rem;
   }
 }
 
@@ -874,14 +943,7 @@ input[type="text"] {
   .wordChoices,
   .confirmWord {
     left: 8rem;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  #get-word-form,
-  .wordChoices,
-  .confirmWord {
-    left: 7rem;
+    right: 8rem;
   }
 }
 
@@ -916,6 +978,7 @@ input[type="text"] {
   .wordChoices,
   .confirmWord {
     left: 5rem;
+    right: 5rem;
   }
 }
 
@@ -924,6 +987,7 @@ input[type="text"] {
   .wordChoices,
   .confirmWord {
     left: 3rem;
+    right: 5rem;
   }
 }
 
@@ -936,6 +1000,8 @@ input[type="text"] {
   }
   .logged-status {
     float: left;
+    position: relative;
+    top: 2px;
     max-width: 11rem;
     margin-bottom: 0;
     margin-left: .5rem;
@@ -948,8 +1014,8 @@ input[type="text"] {
     line-height: 23px;
   }
   .sidebar {
-    height: 11rem;
-    height: 3.5rem;
+    height: 10rem;
+    border-right: none;
   }
   #big-plus-svg {
     width: 80px;
@@ -965,11 +1031,14 @@ input[type="text"] {
   }
   .changeAndDelete {
     width: 90vw;
+    top: 6rem;
   }
   .title {
-    font-size: 25px;
+    font-size: 26px;
     line-height: 30px;
-    width: 20rem;
+    width: 9rem;
+    position: relative;
+    top: 2.75rem;
   }
   .logged-out-footer {
     top: 0;
@@ -979,6 +1048,8 @@ input[type="text"] {
   }
   .logged-out-status {
     float: left;
+    position: relative;
+    top: 2px;
   }
   .log-in {
     float: right;
@@ -999,11 +1070,39 @@ input[type="text"] {
   #get-word-form,
   .wordChoices,
   .confirmWord {
-    top: 0rem;
+    top: 10rem;
+    font-size: 18px;
   }
   #get-word-go {
-    margin: 1rem auto 0;
-    font-size: 27px;
+    margin: 2rem auto 0;
+    font-size: 22px;
+    width: 4rem;
+    height: 2.5rem;
+  }
+  #wordList {
+    position: relative;
+    top: 6rem;
+  }
+  .transWord, .confirmButton {
+    font-size: 17px;
+  }
+  .spanConfirm {
+    font-size: 20px;
+    font-weight: 400;
+  }
+  input[type="text"] {
+    font-size: 18px;
+  }
+  .changeConfirmBox {
+    top: 8rem;
+    right: 3rem;
+    font-size: 19px;
+    padding: 1.5rem;
+  }
+  .changeConfirmBox button {
+    font-size: 20px;
+    width: 3.5rem;
+    margin: 2rem auto 0;
   }
 }
 
@@ -1011,35 +1110,23 @@ input[type="text"] {
   #get-word-form,
   .wordChoices,
   .confirmWord {
-    width: 22rem;
-    font-size: 21px;
+    font-size: 17px;
   }
 }
 
 @media screen and (max-width: 550px) {
-  #get-word-form,
-  .wordChoices,
-  .confirmWord {
-    width: 20rem;
-    font-size: 20px;
-  }
-}
-
-@media screen and (max-width: 550px) {
-  #get-word-form,
-  .wordChoices,
-  .confirmWord {
-    width: 19rem;
+  .changeConfirmBox {
+    font-size: 17px;
   }
 }
 
 @media screen and (max-width: 500px) {
   .changeAndDelete {
-    width: 95vw;
+    width: 100vw;
   }
   .wordset {
     font-size: 18px;
-    margin: 7px;
+    margin: 4px;
   }
   .login-box {
     width: 21rem;
@@ -1058,6 +1145,35 @@ input[type="text"] {
   #get-started {
     font-size: 23px;
   }
+  .sidebar {
+    height: 8.5rem;
+  }
+  .title {
+    font-size: 21px;
+    line-height: 25px;
+    width: 7rem;
+    position: relative;
+    top: 2rem;
+  }
+  .logged-footer {
+    padding: 7px;
+  }
+  button.footers.log-out {
+    top: -2px;
+  }
+  #big-plus {
+    top: 3.5rem;
+  }
+  svg#big-plus-svg {
+    height: 60px;
+    width: 60px;
+  }
+  body {
+    top: 2.5rem;
+  }
+  .changeConfirmBox {
+    right: 3rem;
+  }
 }
 
 @media screen and (max-width: 490px) {
@@ -1068,13 +1184,6 @@ input[type="text"] {
   }
 }
 
-@media screen and (max-width: 470px) {
-  #get-word-form,
-  .wordChoices,
-  .confirmWord {
-    width: 18rem;
-  }
-}
 
 @media screen and (max-width: 460px) {
   #get-word-form,
@@ -1091,16 +1200,16 @@ input[type="text"] {
   #get-word-form,
   .wordChoices,
   .confirmWord {
-    width: 17rem;
-  }
-}
-
-@media screen and (max-width: 440px) {
-  #get-word-form,
-  .wordChoices,
-  .confirmWord {
-    width: 17rem;
     padding: 2rem;
+  }
+  #accordion h3 {
+    font-size: 18px;
+  }
+  #accordion div {
+    font-size: 15px;
+  }
+  #accordion button {
+    font-size: 16px;
   }
 }
 
@@ -1114,8 +1223,26 @@ input[type="text"] {
   #get-word-form,
   .wordChoices,
   .confirmWord {
-    width: 16rem;
     padding: 1rem;
+    font-size: 15px;
+  }
+  #accordion h3 {
+    font-size: 16px;
+  }
+  input[type="text"] {
+    font-size: 16px;
+    height: 1.5rem;
+  }
+  #accordion div {
+    padding: 10px;
+  }
+  .changeConfirmBox {
+    right: 2rem;
+  }
+  .english-option, .spanish-option {
+    display: block;
+    float: left;
+    clear: both;
   }
 }
 
@@ -1124,6 +1251,5 @@ input[type="text"] {
   .wordChoices,
   .confirmWord {
     font-size: 18px;
-    width: 14rem;
   }
 }

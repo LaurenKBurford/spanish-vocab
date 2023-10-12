@@ -45,11 +45,13 @@ $(".wordset").click(function() {
   if ($(".englishSide", this).hasClass("invisible")) {
     $(".spanishSide", this).addClass("invisible");
     $(".englishSide", this).removeClass("invisible");
-    $(this).css("backgroundColor", "#EDD0AE");
+    $(this).css("backgroundColor", "#f2efe9");
+    $(this).css("color", "#3D5556");
   } else if ($(".spanishSide", this).hasClass("invisible")) {
     $(".englishSide", this).addClass("invisible");
     $(".spanishSide", this).removeClass("invisible");
-    $(this).css("backgroundColor", "#fca028");
+    $(this).css("backgroundColor", "#facd39");
+    $(this).css("color", "#910004");
   }
 
 });
@@ -62,15 +64,17 @@ $(".inner-circle").click( function() {
   if ($(".slider-text").html() == "english") {
     $(".englishSide").addClass("invisible");
     $(".spanishSide").removeClass("invisible");
-    $(".wordset").css("backgroundColor", "#fca028");
+    $(".wordset").css("backgroundColor", "#facd39");
+    $(".wordset").css("color", "#910004");
     $(".slider-text").html("spanish");
-    $(".inner-slider").css("backgroundColor", "#fca028");
+    $(".inner-slider").css("backgroundColor", "#facd39");
   } else if ($(".slider-text").html() == "spanish") {
     $(".spanishSide").addClass("invisible");
     $(".englishSide").removeClass("invisible");
-    $(".wordset").css("backgroundColor", "#EDD0AE");
+    $(".wordset").css("backgroundColor", "#f2efe9");
+    $(".wordset").css("color", "#3D5556");
     $(".slider-text").html("english");
-    $(".inner-slider").css("backgroundColor", "#EDD0AE");
+    $(".inner-slider").css("backgroundColor", "#f2efe9");
   }
 });
 

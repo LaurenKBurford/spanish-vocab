@@ -68,7 +68,7 @@ app.get("/home", (req, res) => {
         for (i = 0; i < foundUser.words.length; i++) {
           const englishVersion = decodeURI(foundUser.words[i].english);
           const spanishVersion = decodeURI(foundUser.words[i].spanish);
-          let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#ED863A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+          let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#3D5556' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#faead7' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#faead7' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
           usersWords += currentWord;
         }
 
@@ -201,7 +201,7 @@ app.post("/get-word", (req, res) => {
                     for (i = 0; i < foundUser.words.length; i++) {
                       const englishVersion = decodeURI(foundUser.words[i].english);
                       const spanishVersion = decodeURI(foundUser.words[i].spanish);
-                      let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#ED863A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+                      let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#3D5556' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#faead7' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#faead7' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
                       usersWords += currentWord;
                     }
 
@@ -232,7 +232,7 @@ app.post("/get-word", (req, res) => {
                     for (i = 0; i < foundUser.words.length; i++) {
                       const englishVersion = decodeURI(foundUser.words[i].english);
                       const spanishVersion = decodeURI(foundUser.words[i].spanish);
-                      let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#ED863A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+                      let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#3D5556' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#faead7' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#faead7' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
                       usersWords += currentWord;
                     }
 
@@ -268,7 +268,7 @@ app.post("/get-word", (req, res) => {
                 for (i = 0; i < foundUser.words.length; i++) {
                   const englishVersion = decodeURI(foundUser.words[i].english);
                   const spanishVersion = decodeURI(foundUser.words[i].spanish);
-                  let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#ED863A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+                  let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#3D5556' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#faead7' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#faead7' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
                   usersWords += currentWord;
                 }
 
@@ -302,7 +302,7 @@ app.post("/get-word", (req, res) => {
             for (i = 0; i < foundUser.words.length; i++) {
               const englishVersion = decodeURI(foundUser.words[i].english);
               const spanishVersion = decodeURI(foundUser.words[i].spanish);
-              let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#ED863A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+              let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#3D5556' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#faead7' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#faead7' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
               usersWords += currentWord;
             }
 
@@ -341,7 +341,7 @@ app.post("/word-chosen", (req, res) => {
         for (i = 0; i < foundUser.words.length; i++) {
           const englishVersion = decodeURI(foundUser.words[i].english);
           const spanishVersion = decodeURI(foundUser.words[i].spanish);
-          let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#ED863A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+          let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#3D5556' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#faead7' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#faead7' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
           usersWords += currentWord;
         }
 
@@ -390,7 +390,7 @@ app.post("/confirm-word", (req, res) => {
                     for (i = 0; i < foundUser.words.length; i++) {
                       const englishVersion = decodeURI(foundUser.words[i].english);
                       const spanishVersion = decodeURI(foundUser.words[i].spanish);
-                      let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#ED863A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+                      let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#3D5556' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#faead7' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#faead7' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
                       usersWords += currentWord;
                     }
 
@@ -437,7 +437,7 @@ app.post("/confirm-word", (req, res) => {
                       for (i = 0; i < foundUser.words.length; i++) {
                         const englishVersion = decodeURI(foundUser.words[i].english);
                         const spanishVersion = decodeURI(foundUser.words[i].spanish);
-                        let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#ED863A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+                        let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#3D5556' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#faead7' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#faead7' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
                         usersWords += currentWord;
                       }
 
@@ -514,7 +514,7 @@ app.post("/deleteWord", (req, res) => {
           for (i = 0; i < foundUser.words.length; i++) {
             const englishVersion = decodeURI(foundUser.words[i].english);
             const spanishVersion = decodeURI(foundUser.words[i].spanish);
-            let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#ED863A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+            let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#3D5556' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#faead7' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#faead7' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
             usersWords += currentWord;
           }
 
@@ -550,7 +550,7 @@ app.post("/changeUsername", (req,res) => {
         for (i = 0; i < foundUser.words.length; i++) {
           const englishVersion = decodeURI(foundUser.words[i].english);
           const spanishVersion = decodeURI(foundUser.words[i].spanish);
-          let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#ED863A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+          let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#3D5556' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#faead7' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#faead7' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
           usersWords += currentWord;
         }
 
@@ -581,7 +581,7 @@ app.post("/changePassword", (req,res) => {
           for (i = 0; i < foundUser.words.length; i++) {
             const englishVersion = decodeURI(foundUser.words[i].english);
             const spanishVersion = decodeURI(foundUser.words[i].spanish);
-            let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#ED863A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+            let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#3D5556' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#faead7' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#faead7' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
             usersWords += currentWord;
           }
 
@@ -599,7 +599,7 @@ app.post("/changePassword", (req,res) => {
       for (i = 0; i < foundUser.words.length; i++) {
         const englishVersion = decodeURI(foundUser.words[i].english);
         const spanishVersion = decodeURI(foundUser.words[i].spanish);
-        let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#ED863A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+        let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#3D5556' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#faead7' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#faead7' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
         usersWords += currentWord;
       }
 
@@ -634,7 +634,7 @@ app.post("/changeEmail", (req,res) => {
         for (i = 0; i < foundUser.words.length; i++) {
           const englishVersion = decodeURI(foundUser.words[i].english);
           const spanishVersion = decodeURI(foundUser.words[i].spanish);
-          let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#ED863A' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#EDD0AE' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
+          let currentWord = "<div class='wordset'><div class='smallXdelete'><svg height='22px' width='22px' viewbox='0 0 160 160'><circle cx='80' cy='80' r='70' fill='#3D5556' stroke-width='14'/><line x1='50' y1='45' x2='110' y2='115' stroke='#faead7' stroke-width='18' stroke-linecap='round'/><line x1='50' y1='115' x2='110' y2='45' stroke='#faead7' stroke-width='18' stroke-linecap='round'/></svg></div><div class='englishSide'>" + englishVersion + "</div><div class='spanishSide'>" + spanishVersion + "</div></div>";
           usersWords += currentWord;
         }
 
