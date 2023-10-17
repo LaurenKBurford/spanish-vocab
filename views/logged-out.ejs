@@ -6,4 +6,30 @@
   <a class="footers log-in" href="/login">Log In</a>
 </div>
 
+<style>
+  
+  .logged-out-footer {
+      width: 100%;
+  }
+  @media screen and (max-width: 620px) {
+    .sidebar {
+      height: 11rem;
+    }
+    .title {
+      top: 3.25rem;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .sidebar {
+      height: 9.5rem;
+      padding-top: 2rem;
+    }
+    .title {
+      top: 2.2rem;
+    }
+  }
+
+</style>  
+
 <%- include("footer") -%>

@@ -857,6 +857,7 @@ svg#big-plus-svg:hover {
     height: 10rem;
     width: 100vw;
     border-bottom: 5px solid white;
+    border-right: none;
   }
   .title {
     font-size: 39px;
@@ -1015,7 +1016,6 @@ form {
   }
   .sidebar {
     height: 10rem;
-    border-right: none;
   }
   #big-plus-svg {
     width: 80px;
@@ -1055,7 +1055,7 @@ form {
     float: right;
   }
   .login-box {
-    margin: 1rem auto;
+    margin: 10rem auto;
   }
   .login-title {
         font-size: 25px;
@@ -1215,7 +1215,7 @@ form {
 
 @media screen and (max-width: 400px) {
   .login-box {
-    width: 90vw;
+    width: 85vw;
   }
   .begin-box {
     width: 18rem;
